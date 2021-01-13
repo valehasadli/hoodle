@@ -30,6 +30,9 @@ class HistoryLocalDataProvider {
             history: history.history,
             createdAt: history.createdAt,
             updatedAt: history.updatedAt,
+            currentPage: 1,
+            lastPage: 1,
+            total: model.length,
           ),
         )
         .toList();

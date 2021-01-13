@@ -21,11 +21,13 @@ class HistoryRepository implements HistoryInterface {
   });
 
   @override
-  Future<Either<Failure, List<HistoryEntity>>> fetchHistory() async {
+  Future<Either<Failure, List<HistoryEntity>>> fetchHistory({
+    @required int page,
+  }) async {
     if (await connectivity.isConnected) {
       try {
         final List<HistoryEntity> history =
-            await historyRemoteDataProvider.fetchHistory();
+            await historyRemoteDataProvider.fetchHistory(page: page);
 
         await historyLocalDataProvider.cacheHistory(history: history);
         return Right(history);

@@ -11,6 +11,7 @@ class HistoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: getProportionateScreenWidth(130),
       margin: EdgeInsets.only(
         left: getProportionateScreenWidth(20),
         top: getProportionateScreenWidth(20),
@@ -114,7 +115,7 @@ class HistoryCard extends StatelessWidget {
     );
   }
 
-  Future<dynamic> buildSnackBar(BuildContext context) {
+  Future<void> buildSnackBar(BuildContext context) {
     return Clipboard.setData(
       ClipboardData(text: history.value),
     ).then((_) {

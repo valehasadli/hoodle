@@ -11,12 +11,14 @@ import '../../../../common/utils/constants.dart';
 import '../../bloc/history/history_bloc.dart';
 import '../../../domain/entities/history_entity.dart';
 
-part 'histories.dart';
+part 'history.dart';
 part 'history_error.dart';
 part 'history_loading.dart';
 part 'history_card.dart';
 
 class TranslationHistory extends StatelessWidget {
+  final List<HistoryEntity> _history = [];
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HistoryBloc>(
@@ -36,7 +38,20 @@ class TranslationHistory extends StatelessWidget {
             ),
             height: CustomSize.screenHeight,
             width: double.infinity,
-            child: BlocBuilder<HistoryBloc, HistoryState>(
+            child: BlocConsumer<HistoryBloc, HistoryState>(
+              listener: (context, state) {
+                if (state.status == HistoryStatus.scroll) {
+                  Scaffold.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      const SnackBar(
+                        content: Text('History Loading'),
+                      ),
+                    );
+                } else if (state.status == HistoryStatus.success) {
+                  _history.addAll(state.history);
+                }
+              },
               builder: (context, state) {
                 if (state.status == HistoryStatus.failure) {
                   return HistoryError();
@@ -46,7 +61,7 @@ class TranslationHistory extends StatelessWidget {
                   return HistoryLoading();
                 }
 
-                return Histories(histories: state.history);
+                return History(history: _history);
               },
             ),
           ),

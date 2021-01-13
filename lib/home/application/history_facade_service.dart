@@ -10,7 +10,9 @@ class HistoryFacadeService {
 
   const HistoryFacadeService({@required this.repository});
 
-  Future<Either<Failure, List<HistoryEntity>>> fetchHistory() async {
-    return await repository.fetchHistory();
+  Future<Either<Failure, List<HistoryEntity>>> fetchHistory({
+    @required int page,
+  }) async {
+    return await repository.fetchHistory(page: page);
   }
 }

@@ -23,6 +23,34 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
   Stream<HistoryState> mapEventToState(HistoryEvent event) async* {
     if (event is HistoryFetch) {
       yield* _mapFetchToState(event, state);
+    } else if (event is HistoryScrolled) {
+      yield* _mapScrolledToState(event, state);
+    }
+  }
+
+  Stream<HistoryState> _mapScrolledToState(
+    HistoryScrolled event,
+    HistoryState state,
+  ) async* {
+    if (state.currentPage <= state.lastPage &&
+        state.status != HistoryStatus.scroll) {
+      yield state.copyWith(status: HistoryStatus.scroll);
+
+      final Either<Failure, List<HistoryEntity>> failureOrHistory =
+          await service.fetchHistory(page: state.currentPage + 1);
+
+      yield failureOrHistory.fold(
+        (failure) => state.copyWith(status: HistoryStatus.failure),
+        (history) {
+          return state.copyWith(
+            history: history,
+            status: HistoryStatus.success,
+            currentPage: history.first.currentPage,
+            lastPage: history.first.lastPage,
+            total: history.first.total,
+          );
+        },
+      );
     }
   }
 
@@ -31,15 +59,17 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
     HistoryState state,
   ) async* {
     yield state.copyWith(status: HistoryStatus.progress);
-
     final Either<Failure, List<HistoryEntity>> failureOrHistory =
-        await service.fetchHistory();
+        await service.fetchHistory(page: state.currentPage);
 
     yield failureOrHistory.fold(
       (failure) => state.copyWith(status: HistoryStatus.failure),
       (history) => state.copyWith(
         history: history,
         status: HistoryStatus.success,
+        currentPage: history.first.currentPage,
+        lastPage: history.first.lastPage,
+        total: history.first.total,
       ),
     );
   }

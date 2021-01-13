@@ -2,7 +2,7 @@ part of 'history_bloc.dart';
 
 enum HistoryStatus {
   pure,
-  dirty,
+  scroll,
   progress,
   success,
   failure,

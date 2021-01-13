@@ -20,9 +20,7 @@ class Body extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           child: Column(
             children: [
-              TranslationForm(
-                animationController: animationController,
-              ),
+              TranslationForm(animationController: animationController),
               TranslationHistory(),
             ],
           ),
