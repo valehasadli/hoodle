@@ -14,8 +14,8 @@ class HistoryCard extends StatelessWidget {
       height: getProportionateScreenWidth(130),
       margin: EdgeInsets.only(
         left: getProportionateScreenWidth(20),
-        top: getProportionateScreenWidth(20),
         right: getProportionateScreenWidth(20),
+        top: getProportionateScreenWidth(20),
       ),
       decoration: BoxDecoration(
         color: Colors.white,

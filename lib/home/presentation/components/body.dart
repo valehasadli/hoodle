@@ -4,11 +4,8 @@ import 'form/translation_form.dart';
 import 'history/translation_history.dart';
 
 class Body extends StatelessWidget {
-  final AnimationController animationController;
-
   const Body({
     Key key,
-    @required this.animationController,
   }) : super(key: key);
 
   @override
@@ -20,7 +17,7 @@ class Body extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           child: Column(
             children: [
-              TranslationForm(animationController: animationController),
+              TranslationForm(),
               TranslationHistory(),
             ],
           ),
