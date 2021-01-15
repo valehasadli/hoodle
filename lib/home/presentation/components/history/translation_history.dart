@@ -48,7 +48,8 @@ class TranslationHistory extends StatelessWidget {
                         content: Text('History Loading'),
                       ),
                     );
-                } else if (state.status == HistoryStatus.success) {
+                } else if (state.status == HistoryStatus.success &&
+                    state.total <= _history.length) {
                   _history.addAll(state.history);
                 }
               },
