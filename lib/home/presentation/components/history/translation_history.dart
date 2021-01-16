@@ -46,6 +46,8 @@ class TranslationHistory extends StatelessWidget {
                         content: Text('History Loading'),
                       ),
                     );
+                } else if (state.status == HistoryStatus.success) {
+                  Scaffold.of(context).hideCurrentSnackBar();
                 }
               },
               builder: (context, state) {

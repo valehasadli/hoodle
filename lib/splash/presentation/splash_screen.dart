@@ -9,6 +9,7 @@ class SplashScreen extends StatelessWidget {
     CustomSize().init(context);
     return Scaffold(
       body: Body(),
+      appBar: AppBar(brightness: Brightness.light),
     );
   }
 }

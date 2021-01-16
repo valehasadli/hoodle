@@ -11,6 +11,7 @@ class History extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(history.length);
     return ListView.builder(
       controller: _scroll
         ..addListener(() {
