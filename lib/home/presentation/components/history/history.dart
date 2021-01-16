@@ -14,8 +14,9 @@ class History extends StatelessWidget {
     return ListView.builder(
       controller: _scroll
         ..addListener(() {
-          if (_scroll.offset == _scroll.position.maxScrollExtent) {
-            BlocProvider.of<HistoryBloc>(context).add(HistoryScrolled());
+          if (_scroll.offset == _scroll.position.maxScrollExtent &&
+              context.read<HistoryBloc>().state.total > history.length) {
+            context.read<HistoryBloc>().add(HistoryScrolled());
           }
         }),
       itemCount: history.length,

@@ -42,8 +42,9 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
       yield failureOrHistory.fold(
         (failure) => state.copyWith(status: HistoryStatus.failure),
         (history) {
+          state.history.addAll(history);
+          print(state.history.length);
           return state.copyWith(
-            history: history,
             status: HistoryStatus.success,
             currentPage: history.first.currentPage,
             lastPage: history.first.lastPage,

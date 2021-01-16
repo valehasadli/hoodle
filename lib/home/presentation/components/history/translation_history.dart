@@ -17,8 +17,6 @@ part 'history_loading.dart';
 part 'history_card.dart';
 
 class TranslationHistory extends StatelessWidget {
-  final List<HistoryEntity> _history = [];
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HistoryBloc>(
@@ -48,9 +46,6 @@ class TranslationHistory extends StatelessWidget {
                         content: Text('History Loading'),
                       ),
                     );
-                } else if (state.status == HistoryStatus.success &&
-                    state.total <= _history.length) {
-                  _history.addAll(state.history);
                 }
               },
               builder: (context, state) {
@@ -62,7 +57,7 @@ class TranslationHistory extends StatelessWidget {
                   return HistoryLoading();
                 }
 
-                return History(history: _history);
+                return History(history: state.history);
               },
             ),
           ),
