@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../../../common/utils/constants.dart';
 import '../../../common/config/custom_size.dart';
+import '../../../common/utils/constants.dart';
 
 class HomeAppBar extends PreferredSize {
   @override
@@ -9,10 +10,11 @@ class HomeAppBar extends PreferredSize {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return SliverAppBar(
       automaticallyImplyLeading: false,
+      brightness: Brightness.light,
       backgroundColor: kPrimaryColor,
-      titleSpacing: getProportionateScreenWidth(20),
+      // titleSpacing: getProportionateScreenWidth(20),
       title: Row(
         children: [
           Text('Hoodle'),
@@ -26,6 +28,13 @@ class HomeAppBar extends PreferredSize {
           ),
         ],
       ),
+      actions: [
+        IconButton(
+          icon: Icon(MdiIcons.logout),
+          onPressed: () => print('call login domain api log out service'),
+          color: Colors.white,
+        )
+      ],
     );
   }
 }
