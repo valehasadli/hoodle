@@ -89,7 +89,6 @@ class TranslationBloc extends Bloc<TranslationEvent, TranslationState> {
     return state.copyWith(
       keyLanguageLocale: event.valueLanguageLocale,
       valueLanguageLocale: event.keyLanguageLocale,
-      status: TranslationStatus.dirty,
     );
   }
 

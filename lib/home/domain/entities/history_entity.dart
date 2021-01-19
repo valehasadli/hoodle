@@ -15,6 +15,9 @@ class HistoryEntity extends Equatable {
   final bool history;
   final DateTime createdAt;
   final DateTime updatedAt;
+  final int currentPage;
+  final int lastPage;
+  final int total;
 
   const HistoryEntity({
     @required this.id,
@@ -30,6 +33,9 @@ class HistoryEntity extends Equatable {
     @required this.history,
     @required this.createdAt,
     @required this.updatedAt,
+    @required this.currentPage,
+    @required this.lastPage,
+    @required this.total,
   });
 
   @override
@@ -47,5 +53,8 @@ class HistoryEntity extends Equatable {
         history,
         createdAt,
         updatedAt,
+        currentPage,
+        lastPage,
+        total,
       ];
 }

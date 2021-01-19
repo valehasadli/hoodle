@@ -12,11 +12,8 @@ import 'languages/languages.dart';
 import 'translation/translation.dart';
 
 class TranslationForm extends StatefulWidget {
-  final AnimationController animationController;
-
   const TranslationForm({
     Key key,
-    @required this.animationController,
   }) : super(key: key);
 
   @override
@@ -28,29 +25,25 @@ class _TranslationFormState extends State<TranslationForm> {
 
   @override
   Widget build(BuildContext context) {
-    return SizeTransition(
-      sizeFactor: widget.animationController,
-      axisAlignment: -1.0,
-      child: Padding(
-        padding: EdgeInsets.all(
-          getProportionateScreenWidth(20),
+    return Padding(
+      padding: EdgeInsets.all(
+        getProportionateScreenWidth(20),
+      ),
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: getProportionateScreenWidth(10),
         ),
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            vertical: getProportionateScreenWidth(10),
-          ),
-          decoration: kCircularBoxDecoration,
-          child: BlocProvider<TranslationBloc>(
-            create: (BuildContext context) => serviceLocator<TranslationBloc>(),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  Languages(),
-                  Divider(),
-                  Translation(),
-                ],
-              ),
+        decoration: kCircularBoxDecoration,
+        child: BlocProvider<TranslationBloc>(
+          create: (BuildContext context) => serviceLocator<TranslationBloc>(),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Languages(),
+                Divider(),
+                Translation(),
+              ],
             ),
           ),
         ),

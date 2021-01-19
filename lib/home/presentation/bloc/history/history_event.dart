@@ -10,3 +10,7 @@ abstract class HistoryEvent extends Equatable {
 class HistoryFetch extends HistoryEvent {
   const HistoryFetch();
 }
+
+class HistoryScrolled extends HistoryEvent {
+  const HistoryScrolled();
+}
