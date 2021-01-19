@@ -10,11 +10,17 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return SafeArea(
+    //   child: CustomScrollView(
+    //     slivers: [
+
+    //     ],
+    //   ),
+    // );
     return SafeArea(
       child: SizedBox(
         width: double.infinity,
         child: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
           child: Column(
             children: [
               TranslationForm(),

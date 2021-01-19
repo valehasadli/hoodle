@@ -14,27 +14,36 @@ import '../forgot_password/presentation/forgot_password_screen.dart';
 import '../home/presentation/home_screen.dart';
 import '../login/presentation/login_screen.dart';
 import '../login_success/presentation/login_success_screen.dart';
+import '../navigation/presentation/navigation_screen.dart';
+import '../profile/presentation/profile_screen.dart';
 import '../registration/presentation/registration_screen.dart';
 import '../splash/presentation/splash_screen.dart';
+import '../timeline/presentation/timeline_screen.dart';
 import 'guards/auth_guard.dart';
 import 'guards/guest_guard.dart';
 
 class Routes {
   static const String splashScreen = '/';
   static const String loginScreen = '/login-screen';
-  static const String loginSuccessScreen = '/login-success-screen';
-  static const String homeScreen = '/home-screen';
+  static const String completeProfileScreen = '/complete-profile-screen';
   static const String registrationScreen = '/registration-screen';
   static const String forgotPasswordScreen = '/forgot-password-screen';
-  static const String completeProfileScreen = '/complete-profile-screen';
+  static const String loginSuccessScreen = '/login-success-screen';
+  static const String homeScreen = '/home-screen';
+  static const String profileScreen = '/profile-screen';
+  static const String timelineScreen = '/timeline-screen';
+  static const String navigationScreen = '/navigation-screen';
   static const all = <String>{
     splashScreen,
     loginScreen,
-    loginSuccessScreen,
-    homeScreen,
+    completeProfileScreen,
     registrationScreen,
     forgotPasswordScreen,
-    completeProfileScreen,
+    loginSuccessScreen,
+    homeScreen,
+    profileScreen,
+    timelineScreen,
+    navigationScreen,
   };
 }
 
@@ -44,15 +53,19 @@ class AppRouter extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.splashScreen, page: SplashScreen, guards: [GuestGuard]),
     RouteDef(Routes.loginScreen, page: LoginScreen, guards: [GuestGuard]),
-    RouteDef(Routes.loginSuccessScreen,
-        page: LoginSuccessScreen, guards: [AuthGuard]),
-    RouteDef(Routes.homeScreen, page: HomeScreen, guards: [AuthGuard]),
+    RouteDef(Routes.completeProfileScreen,
+        page: CompleteProfileScreen, guards: [GuestGuard]),
     RouteDef(Routes.registrationScreen,
         page: RegistrationScreen, guards: [GuestGuard]),
     RouteDef(Routes.forgotPasswordScreen,
         page: ForgotPasswordScreen, guards: [GuestGuard]),
-    RouteDef(Routes.completeProfileScreen,
-        page: CompleteProfileScreen, guards: [GuestGuard]),
+    RouteDef(Routes.loginSuccessScreen,
+        page: LoginSuccessScreen, guards: [AuthGuard]),
+    RouteDef(Routes.homeScreen, page: HomeScreen, guards: [AuthGuard]),
+    RouteDef(Routes.profileScreen, page: ProfileScreen, guards: [AuthGuard]),
+    RouteDef(Routes.timelineScreen, page: TimelineScreen, guards: [AuthGuard]),
+    RouteDef(Routes.navigationScreen,
+        page: NavigationScreen, guards: [AuthGuard]),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -73,18 +86,10 @@ class AppRouter extends RouterBase {
         transitionDuration: const Duration(milliseconds: 100),
       );
     },
-    LoginSuccessScreen: (data) {
+    CompleteProfileScreen: (data) {
       return PageRouteBuilder<bool>(
         pageBuilder: (context, animation, secondaryAnimation) =>
-            LoginSuccessScreen(),
-        settings: data,
-        transitionsBuilder: TransitionsBuilders.zoomIn,
-        transitionDuration: const Duration(milliseconds: 100),
-      );
-    },
-    HomeScreen: (data) {
-      return PageRouteBuilder<bool>(
-        pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
+            CompleteProfileScreen(),
         settings: data,
         transitionsBuilder: TransitionsBuilders.zoomIn,
         transitionDuration: const Duration(milliseconds: 100),
@@ -108,10 +113,45 @@ class AppRouter extends RouterBase {
         transitionDuration: const Duration(milliseconds: 100),
       );
     },
-    CompleteProfileScreen: (data) {
+    LoginSuccessScreen: (data) {
       return PageRouteBuilder<bool>(
         pageBuilder: (context, animation, secondaryAnimation) =>
-            CompleteProfileScreen(),
+            LoginSuccessScreen(),
+        settings: data,
+        transitionsBuilder: TransitionsBuilders.zoomIn,
+        transitionDuration: const Duration(milliseconds: 100),
+      );
+    },
+    HomeScreen: (data) {
+      return PageRouteBuilder<bool>(
+        pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
+        settings: data,
+        transitionsBuilder: TransitionsBuilders.zoomIn,
+        transitionDuration: const Duration(milliseconds: 100),
+      );
+    },
+    ProfileScreen: (data) {
+      return PageRouteBuilder<bool>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            ProfileScreen(),
+        settings: data,
+        transitionsBuilder: TransitionsBuilders.zoomIn,
+        transitionDuration: const Duration(milliseconds: 100),
+      );
+    },
+    TimelineScreen: (data) {
+      return PageRouteBuilder<bool>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            TimelineScreen(),
+        settings: data,
+        transitionsBuilder: TransitionsBuilders.zoomIn,
+        transitionDuration: const Duration(milliseconds: 100),
+      );
+    },
+    NavigationScreen: (data) {
+      return PageRouteBuilder<bool>(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            NavigationScreen(),
         settings: data,
         transitionsBuilder: TransitionsBuilders.zoomIn,
         transitionDuration: const Duration(milliseconds: 100),
@@ -129,10 +169,8 @@ extension AppRouterExtendedNavigatorStateX on ExtendedNavigatorState {
 
   Future<bool> pushLoginScreen() => push<bool>(Routes.loginScreen);
 
-  Future<bool> pushLoginSuccessScreen() =>
-      push<bool>(Routes.loginSuccessScreen);
-
-  Future<bool> pushHomeScreen() => push<bool>(Routes.homeScreen);
+  Future<bool> pushCompleteProfileScreen() =>
+      push<bool>(Routes.completeProfileScreen);
 
   Future<bool> pushRegistrationScreen() =>
       push<bool>(Routes.registrationScreen);
@@ -140,6 +178,14 @@ extension AppRouterExtendedNavigatorStateX on ExtendedNavigatorState {
   Future<bool> pushForgotPasswordScreen() =>
       push<bool>(Routes.forgotPasswordScreen);
 
-  Future<bool> pushCompleteProfileScreen() =>
-      push<bool>(Routes.completeProfileScreen);
+  Future<bool> pushLoginSuccessScreen() =>
+      push<bool>(Routes.loginSuccessScreen);
+
+  Future<bool> pushHomeScreen() => push<bool>(Routes.homeScreen);
+
+  Future<bool> pushProfileScreen() => push<bool>(Routes.profileScreen);
+
+  Future<bool> pushTimelineScreen() => push<bool>(Routes.timelineScreen);
+
+  Future<bool> pushNavigationScreen() => push<bool>(Routes.navigationScreen);
 }

@@ -15,6 +15,6 @@ class GuestGuard extends RouteGuard {
       return true;
     }
 
-    return navigator.root.push(Routes.homeScreen);
+    return navigator.root.push(Routes.navigationScreen);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:hoodle/navigation/presentation/navigation_screen.dart';
 
 import '../complete_profile/presentation/complete_profile_screen.dart';
 import '../forgot_password/presentation/forgot_password_screen.dart';
@@ -8,6 +9,8 @@ import '../registration/presentation/registration_screen.dart';
 import '../splash/presentation/splash_screen.dart';
 import '../login/presentation/login_screen.dart';
 import '../login_success/presentation/login_success_screen.dart';
+import '../profile/presentation/profile_screen.dart';
+import '../timeline/presentation/timeline_screen.dart';
 
 import '../common/utils/constants.dart';
 
@@ -31,16 +34,10 @@ import 'guards/guest_guard.dart';
       guards: [GuestGuard],
     ),
     CustomRoute<bool>(
-      page: LoginSuccessScreen,
+      page: CompleteProfileScreen,
       transitionsBuilder: TransitionsBuilders.zoomIn,
       durationInMilliseconds: routeDurationInMilliseconds,
-      guards: [AuthGuard],
-    ),
-    CustomRoute<bool>(
-      page: HomeScreen,
-      transitionsBuilder: TransitionsBuilders.zoomIn,
-      durationInMilliseconds: routeDurationInMilliseconds,
-      guards: [AuthGuard],
+      guards: [GuestGuard],
     ),
     CustomRoute<bool>(
       page: RegistrationScreen,
@@ -55,10 +52,34 @@ import 'guards/guest_guard.dart';
       guards: [GuestGuard],
     ),
     CustomRoute<bool>(
-      page: CompleteProfileScreen,
+      page: LoginSuccessScreen,
       transitionsBuilder: TransitionsBuilders.zoomIn,
       durationInMilliseconds: routeDurationInMilliseconds,
-      guards: [GuestGuard],
+      guards: [AuthGuard],
+    ),
+    CustomRoute<bool>(
+      page: HomeScreen,
+      transitionsBuilder: TransitionsBuilders.zoomIn,
+      durationInMilliseconds: routeDurationInMilliseconds,
+      guards: [AuthGuard],
+    ),
+    CustomRoute<bool>(
+      page: ProfileScreen,
+      transitionsBuilder: TransitionsBuilders.zoomIn,
+      durationInMilliseconds: routeDurationInMilliseconds,
+      guards: [AuthGuard],
+    ),
+    CustomRoute<bool>(
+      page: TimelineScreen,
+      transitionsBuilder: TransitionsBuilders.zoomIn,
+      durationInMilliseconds: routeDurationInMilliseconds,
+      guards: [AuthGuard],
+    ),
+    CustomRoute<bool>(
+      page: NavigationScreen,
+      transitionsBuilder: TransitionsBuilders.zoomIn,
+      durationInMilliseconds: routeDurationInMilliseconds,
+      guards: [AuthGuard],
     ),
   ],
 )
