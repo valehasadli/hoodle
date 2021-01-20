@@ -14,7 +14,6 @@ class HomeAppBar extends PreferredSize {
       automaticallyImplyLeading: false,
       brightness: Brightness.light,
       backgroundColor: kPrimaryColor,
-      // titleSpacing: getProportionateScreenWidth(20),
       title: Row(
         children: [
           Text('Hoodle'),
