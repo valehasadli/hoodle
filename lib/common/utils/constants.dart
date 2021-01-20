@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 
 import '../config/custom_size.dart';
 
@@ -42,8 +43,6 @@ const kBoxDecoration = BoxDecoration(
   ),
 );
 
-const kAnimationDuration = Duration(milliseconds: 200);
-
 final headingStyle = TextStyle(
   fontSize: getProportionateScreenWidth(28),
   fontWeight: FontWeight.bold,
@@ -51,9 +50,10 @@ final headingStyle = TextStyle(
   height: 1.5,
 );
 
-const int routeDurationInMilliseconds = 100;
-
 const String kBaseUrl = 'https://hoodle-translation-api.herokuapp.com/api';
+const Duration kAnimationDuration = Duration(milliseconds: 200);
+const int kRouteAnimationDuration = 200;
+const kRouteTransitionBuilder = TransitionsBuilders.slideLeft;
 
 // Form Errors
 

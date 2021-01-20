@@ -74,16 +74,16 @@ class AppRouter extends RouterBase {
       return PageRouteBuilder<bool>(
         pageBuilder: (context, animation, secondaryAnimation) => SplashScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.zoomIn,
-        transitionDuration: const Duration(milliseconds: 100),
+        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionDuration: const Duration(milliseconds: 200),
       );
     },
     LoginScreen: (data) {
       return PageRouteBuilder<bool>(
         pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.zoomIn,
-        transitionDuration: const Duration(milliseconds: 100),
+        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionDuration: const Duration(milliseconds: 200),
       );
     },
     CompleteProfileScreen: (data) {
@@ -91,8 +91,8 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             CompleteProfileScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.zoomIn,
-        transitionDuration: const Duration(milliseconds: 100),
+        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionDuration: const Duration(milliseconds: 200),
       );
     },
     RegistrationScreen: (data) {
@@ -100,8 +100,8 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             RegistrationScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.zoomIn,
-        transitionDuration: const Duration(milliseconds: 100),
+        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionDuration: const Duration(milliseconds: 200),
       );
     },
     ForgotPasswordScreen: (data) {
@@ -109,8 +109,8 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             ForgotPasswordScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.zoomIn,
-        transitionDuration: const Duration(milliseconds: 100),
+        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionDuration: const Duration(milliseconds: 200),
       );
     },
     LoginSuccessScreen: (data) {
@@ -118,16 +118,16 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             LoginSuccessScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.zoomIn,
-        transitionDuration: const Duration(milliseconds: 100),
+        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionDuration: const Duration(milliseconds: 200),
       );
     },
     HomeScreen: (data) {
       return PageRouteBuilder<bool>(
         pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.zoomIn,
-        transitionDuration: const Duration(milliseconds: 100),
+        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionDuration: const Duration(milliseconds: 200),
       );
     },
     ProfileScreen: (data) {
@@ -135,8 +135,8 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             ProfileScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.zoomIn,
-        transitionDuration: const Duration(milliseconds: 100),
+        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionDuration: const Duration(milliseconds: 200),
       );
     },
     TimelineScreen: (data) {
@@ -144,8 +144,8 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             TimelineScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.zoomIn,
-        transitionDuration: const Duration(milliseconds: 100),
+        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionDuration: const Duration(milliseconds: 200),
       );
     },
     NavigationScreen: (data) {
@@ -153,8 +153,8 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             NavigationScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.zoomIn,
-        transitionDuration: const Duration(milliseconds: 100),
+        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionDuration: const Duration(milliseconds: 200),
       );
     },
   };

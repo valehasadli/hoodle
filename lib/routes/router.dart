@@ -12,7 +12,8 @@ import '../login_success/presentation/login_success_screen.dart';
 import '../profile/presentation/profile_screen.dart';
 import '../timeline/presentation/timeline_screen.dart';
 
-import '../common/utils/constants.dart';
+import '../common/utils/constants.dart'
+    show kRouteAnimationDuration, kRouteTransitionBuilder;
 
 import 'guards/auth_guard.dart';
 import 'guards/guest_guard.dart';
@@ -23,62 +24,62 @@ import 'guards/guest_guard.dart';
     CustomRoute<bool>(
       page: SplashScreen,
       initial: true,
-      transitionsBuilder: TransitionsBuilders.zoomIn,
-      durationInMilliseconds: routeDurationInMilliseconds,
+      transitionsBuilder: kRouteTransitionBuilder,
+      durationInMilliseconds: kRouteAnimationDuration,
       guards: [GuestGuard],
     ),
     CustomRoute<bool>(
       page: LoginScreen,
-      transitionsBuilder: TransitionsBuilders.zoomIn,
-      durationInMilliseconds: routeDurationInMilliseconds,
+      transitionsBuilder: kRouteTransitionBuilder,
+      durationInMilliseconds: kRouteAnimationDuration,
       guards: [GuestGuard],
     ),
     CustomRoute<bool>(
       page: CompleteProfileScreen,
-      transitionsBuilder: TransitionsBuilders.zoomIn,
-      durationInMilliseconds: routeDurationInMilliseconds,
+      transitionsBuilder: kRouteTransitionBuilder,
+      durationInMilliseconds: kRouteAnimationDuration,
       guards: [GuestGuard],
     ),
     CustomRoute<bool>(
       page: RegistrationScreen,
-      transitionsBuilder: TransitionsBuilders.zoomIn,
-      durationInMilliseconds: routeDurationInMilliseconds,
+      transitionsBuilder: kRouteTransitionBuilder,
+      durationInMilliseconds: kRouteAnimationDuration,
       guards: [GuestGuard],
     ),
     CustomRoute<bool>(
       page: ForgotPasswordScreen,
-      transitionsBuilder: TransitionsBuilders.zoomIn,
-      durationInMilliseconds: routeDurationInMilliseconds,
+      transitionsBuilder: kRouteTransitionBuilder,
+      durationInMilliseconds: kRouteAnimationDuration,
       guards: [GuestGuard],
     ),
     CustomRoute<bool>(
       page: LoginSuccessScreen,
-      transitionsBuilder: TransitionsBuilders.zoomIn,
-      durationInMilliseconds: routeDurationInMilliseconds,
+      transitionsBuilder: kRouteTransitionBuilder,
+      durationInMilliseconds: kRouteAnimationDuration,
       guards: [AuthGuard],
     ),
     CustomRoute<bool>(
       page: HomeScreen,
-      transitionsBuilder: TransitionsBuilders.zoomIn,
-      durationInMilliseconds: routeDurationInMilliseconds,
+      transitionsBuilder: kRouteTransitionBuilder,
+      durationInMilliseconds: kRouteAnimationDuration,
       guards: [AuthGuard],
     ),
     CustomRoute<bool>(
       page: ProfileScreen,
-      transitionsBuilder: TransitionsBuilders.zoomIn,
-      durationInMilliseconds: routeDurationInMilliseconds,
+      transitionsBuilder: kRouteTransitionBuilder,
+      durationInMilliseconds: kRouteAnimationDuration,
       guards: [AuthGuard],
     ),
     CustomRoute<bool>(
       page: TimelineScreen,
-      transitionsBuilder: TransitionsBuilders.zoomIn,
-      durationInMilliseconds: routeDurationInMilliseconds,
+      transitionsBuilder: kRouteTransitionBuilder,
+      durationInMilliseconds: kRouteAnimationDuration,
       guards: [AuthGuard],
     ),
     CustomRoute<bool>(
       page: NavigationScreen,
-      transitionsBuilder: TransitionsBuilders.zoomIn,
-      durationInMilliseconds: routeDurationInMilliseconds,
+      transitionsBuilder: kRouteTransitionBuilder,
+      durationInMilliseconds: kRouteAnimationDuration,
       guards: [AuthGuard],
     ),
   ],
