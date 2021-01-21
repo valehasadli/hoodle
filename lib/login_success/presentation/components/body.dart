@@ -33,7 +33,7 @@ class Body extends StatelessWidget {
             child: DefaultButton(
               text: 'Back to Home',
               press: () => ExtendedNavigator.of(context).replace(
-                Routes.homeScreen,
+                Routes.navigationScreen,
               ),
             ),
           ),
