@@ -44,7 +44,7 @@ class _LoginFormState extends State<LoginForm> {
             ..hideCurrentSnackBar()
             ..showSnackBar(
               const SnackBar(
-                content: Text('Credentials is not correct!'),
+                content: const Text('Credentials is not correct!'),
               ),
             );
         }

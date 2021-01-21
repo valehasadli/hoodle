@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/entities/login_entity.dart';
 
-class LoginLocalDataProvider {
+class AuthLocalDataProvider {
   Future<void> cacheLogin({@required LoginEntity login}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -13,5 +13,15 @@ class LoginLocalDataProvider {
     prefs.setString('email', json.encode(login.email));
     prefs.setString('token', json.encode(login.token));
     prefs.setString('is_admin', json.encode(login.isAdmin));
+  }
+
+  Future<void> cacheLogout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.remove('user_id');
+    prefs.remove('name');
+    prefs.remove('email');
+    prefs.remove('token');
+    prefs.remove('is_admin');
   }
 }

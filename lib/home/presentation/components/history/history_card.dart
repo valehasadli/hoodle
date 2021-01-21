@@ -119,7 +119,7 @@ class HistoryCard extends StatelessWidget {
       ClipboardData(text: history.value),
     ).then((_) {
       const snackBar = SnackBar(
-        content: Text('copied to clipboard'),
+        content: const Text('copied to clipboard'),
       );
       Scaffold.of(context)
         ..hideCurrentSnackBar()

@@ -6,7 +6,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../common/errors/failures.dart';
-import '../../application/login_facade_service.dart';
+import '../../application/auth_facade_service.dart';
 import '../../domain/entities/login_entity.dart';
 
 part 'login_status.dart';
@@ -14,7 +14,7 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final LoginFacadeService service;
+  final AuthFacadeService service;
 
   LoginBloc({@required this.service})
       : assert(service != null),

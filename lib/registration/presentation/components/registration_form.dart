@@ -43,7 +43,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
             ..hideCurrentSnackBar()
             ..showSnackBar(
               const SnackBar(
-                content: Text('Registration Failure'),
+                content: const Text('Registration Failure'),
               ),
             );
         }
