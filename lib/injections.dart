@@ -4,11 +4,11 @@ import 'package:get_it/get_it.dart';
 import './common/platform/connectivity.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 
-// login_form
-import './login/infrastructure/data_sources/login_remote_data_provider.dart';
-import './login/infrastructure/data_sources/login_local_data_provider.dart';
-import './login/infrastructure/repositories/login_repository.dart';
-import './login/application/login_facade_service.dart';
+// login
+import './login/infrastructure/data_sources/auth_remote_data_provider.dart';
+import './login/infrastructure/data_sources/auth_local_data_provider.dart';
+import './login/infrastructure/repositories/auth_repository.dart';
+import './login/application/auth_facade_service.dart';
 import './login/presentation/bloc/login_bloc.dart';
 
 // registration
@@ -64,27 +64,27 @@ Future<void> loginDependencies() async {
 
   // Application Layer - facades
   serviceLocator.registerLazySingleton(
-    () => LoginFacadeService(
+    () => AuthFacadeService(
       repository: serviceLocator(),
     ),
   );
 
   // Infrastructure Layer - repositories
   serviceLocator.registerLazySingleton(
-    () => LoginRepository(
+    () => AuthRepository(
       connectivity: serviceLocator(),
-      loginRemoteDataProvider: serviceLocator(),
-      loginLocalDataProvider: serviceLocator(),
+      authRemoteDataProvider: serviceLocator(),
+      authLocalDataProvider: serviceLocator(),
     ),
   );
 
   // Infrastructure Layer - data source
   serviceLocator.registerLazySingleton(
-    () => LoginRemoteDataProvider(),
+    () => AuthRemoteDataProvider(),
   );
 
   serviceLocator.registerLazySingleton(
-    () => LoginLocalDataProvider(),
+    () => AuthLocalDataProvider(),
   );
 }
 

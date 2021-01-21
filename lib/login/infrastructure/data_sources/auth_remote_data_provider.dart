@@ -3,12 +3,14 @@ import 'dart:io';
 
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../common/errors/exceptions.dart';
 import '../../../common/utils/constants.dart' show kBaseUrl;
+import '../../../common/helpers/double_quote.dart';
 import '../../domain/entities/login_entity.dart';
 import '../models/login_model.dart';
 
-class LoginRemoteDataProvider {
+class AuthRemoteDataProvider {
   Future<LoginEntity> login({
     @required String email,
     @required String password,
@@ -42,6 +44,25 @@ class LoginRemoteDataProvider {
         token: model.token,
       );
     } else {
+      throw ServerException();
+    }
+  }
+
+  Future<void> logout() async {
+    final String url = '$kBaseUrl/mobile/auth/logout';
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String token = DoubleQuote.trim(prefs.getString('token'));
+
+    final http.Response response = await http.post(
+      url,
+      headers: {
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+      },
+    );
+
+    if (response.statusCode != 204) {
       throw ServerException();
     }
   }

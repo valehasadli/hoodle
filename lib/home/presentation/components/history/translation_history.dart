@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hoodle/home/presentation/components/form/translation_form.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../common/config/custom_size.dart';
@@ -41,7 +40,7 @@ class TranslationHistory extends StatelessWidget {
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
                   const SnackBar(
-                    content: Text('History Loading'),
+                    content: const Text('History Loading'),
                   ),
                 );
             } else if (state.status == HistoryStatus.success) {
