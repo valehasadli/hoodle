@@ -5,7 +5,7 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Center(
-        child: Text('profile screen'),
+        child: Text('profile screen coming soon :)'),
       ),
     );
   }
