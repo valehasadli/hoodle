@@ -9,6 +9,7 @@ import '../../../common/platform/connectivity.dart';
 import '../../domain/interfaces/registration_interface.dart';
 import '../data_sources/registration_local_data_provider.dart';
 import '../data_sources/registration_remote_data_provider.dart';
+import '../models/registration_model.dart';
 
 class RegistrationRepository implements RegistrationInterface {
   final Connectivity connectivity;
@@ -30,12 +31,24 @@ class RegistrationRepository implements RegistrationInterface {
   }) async {
     if (await connectivity.isConnected) {
       try {
-        final RegistrationEntity registration =
+        final RegistrationModel model =
             await registrationRemoteDataProvider.registration(
           name: name,
           email: email,
           password: password,
           deviceName: deviceName,
+        );
+
+        final RegistrationEntity registration = RegistrationEntity(
+          id: model.id,
+          name: model.name,
+          email: model.email,
+          emailVerifiedAt: model.emailVerifiedAt,
+          rememberToken: model.rememberToken,
+          isAdmin: model.isAdmin,
+          createdAt: model.createdAt,
+          updatedAt: model.updatedAt,
+          token: model.token,
         );
 
         await registrationLocalDataProvider.cacheRegistration(

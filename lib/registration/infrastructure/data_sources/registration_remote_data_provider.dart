@@ -5,11 +5,10 @@ import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 import '../../../common/errors/exceptions.dart';
 import '../../../common/utils/constants.dart' show kBaseUrl;
-import '../../domain/entities/registration_entity.dart';
 import '../models/registration_model.dart';
 
 class RegistrationRemoteDataProvider {
-  Future<RegistrationEntity> registration({
+  Future<RegistrationModel> registration({
     @required String name,
     @required String email,
     @required String password,
@@ -31,20 +30,7 @@ class RegistrationRemoteDataProvider {
     );
 
     if (response.statusCode == 201) {
-      RegistrationModel model = RegistrationModel.fromJson(
-        json.decode(response.body),
-      );
-      return RegistrationEntity(
-        id: model.id,
-        name: model.name,
-        email: model.email,
-        emailVerifiedAt: model.emailVerifiedAt,
-        rememberToken: model.rememberToken,
-        isAdmin: model.isAdmin,
-        createdAt: model.createdAt,
-        updatedAt: model.updatedAt,
-        token: model.token,
-      );
+      return RegistrationModel.fromJson(json.decode(response.body));
     } else {
       throw ServerException();
     }
