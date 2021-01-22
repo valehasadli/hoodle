@@ -15,7 +15,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   int currentPage = 0;
-  List<Map<String, String>> splashData = [
+  final List<Map<String, String>> splashData = [
     {
       "text": "Welcome to Hoodle, Let’s translate!",
       "image": "assets/splash/splash_1.png"
@@ -36,7 +36,7 @@ class _BodyState extends State<Body> {
             Expanded(
               flex: 3,
               child: PageView.builder(
-                onPageChanged: (value) {
+                onPageChanged: (int value) {
                   setState(() {
                     currentPage = value;
                   });
@@ -87,7 +87,7 @@ class _BodyState extends State<Body> {
   AnimatedContainer buildDot({@required int index}) {
     return AnimatedContainer(
       duration: kAnimationDuration,
-      margin: EdgeInsets.only(right: 5),
+      margin: const EdgeInsets.only(right: 5),
       height: 6,
       width: index == currentPage ? 20 : 6,
       decoration: BoxDecoration(

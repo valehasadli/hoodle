@@ -41,15 +41,15 @@ class Body extends StatelessWidget {
                   children: [
                     SocialCard(
                       icon: 'assets/icons/google-icon.svg',
-                      press: () {},
+                      press: () => print('pressed google sign in'),
                     ),
                     SocialCard(
                       icon: 'assets/icons/facebook-2.svg',
-                      press: () {},
+                      press: () => print('pressed fb sign in'),
                     ),
                     SocialCard(
                       icon: 'assets/icons/twitter.svg',
-                      press: () {},
+                      press: () => print('pressed twitter sign in'),
                     ),
                   ],
                 ),
