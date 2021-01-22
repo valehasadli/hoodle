@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:meta/meta.dart';
 import 'package:dartz/dartz.dart';
+
 import '../../../common/errors/failures.dart';
 import '../../../common/errors/exceptions.dart';
 
@@ -10,6 +11,7 @@ import '../../domain/interfaces/login_interface.dart';
 import '../../domain/interfaces/logout_interface.dart';
 import '../data_sources/auth_remote_data_provider.dart';
 import '../data_sources/auth_local_data_provider.dart';
+import '../models/login_model.dart';
 
 class AuthRepository implements LoginInterface, LogoutInterface {
   final Connectivity connectivity;
@@ -30,10 +32,22 @@ class AuthRepository implements LoginInterface, LogoutInterface {
   }) async {
     if (await connectivity.isConnected) {
       try {
-        final LoginEntity login = await authRemoteDataProvider.login(
+        final LoginModel model = await authRemoteDataProvider.login(
           email: email,
           password: password,
           deviceName: deviceName,
+        );
+
+        final LoginEntity login = LoginEntity(
+          id: model.id,
+          name: model.name,
+          email: model.email,
+          emailVerifiedAt: model.emailVerifiedAt,
+          rememberToken: model.rememberToken,
+          isAdmin: model.isAdmin,
+          createdAt: model.createdAt,
+          updatedAt: model.updatedAt,
+          token: model.token,
         );
 
         await authLocalDataProvider.cacheLogin(login: login);
