@@ -8,6 +8,8 @@ import '../../../common/platform/connectivity.dart';
 import '../../domain/interfaces/history_interface.dart';
 import '../data_sources/history_remote_data_provider.dart';
 import '../data_sources/history_local_data_provider.dart';
+import '../models/history_model.dart';
+import '../models/meta_model.dart';
 
 class HistoryRepository implements HistoryInterface {
   final Connectivity connectivity;
@@ -26,8 +28,35 @@ class HistoryRepository implements HistoryInterface {
   }) async {
     if (await connectivity.isConnected) {
       try {
-        final List<HistoryEntity> history =
-            await historyRemoteDataProvider.fetchHistory(page: page);
+        final Map data = await historyRemoteDataProvider.fetchHistory(
+          page: page,
+        );
+
+        final MetaModel metaModel = data['meta'];
+        final List<HistoryModel> historyModel = data['history'];
+
+        final List<HistoryEntity> history = historyModel
+            .map(
+              (history) => HistoryEntity(
+                id: history.id,
+                userId: history.userId,
+                key: history.key,
+                keyLanguageId: history.keyLanguageId,
+                keyLanguageLocale: history.keyLanguageLocale,
+                value: history.value,
+                valueLanguageId: history.valueLanguageId,
+                valueLanguageLocale: history.valueLanguageLocale,
+                count: history.count,
+                favorite: history.favorite,
+                history: history.history,
+                createdAt: history.createdAt,
+                updatedAt: history.updatedAt,
+                currentPage: metaModel.currentPage,
+                lastPage: metaModel.lastPage,
+                total: metaModel.total,
+              ),
+            )
+            .toList();
 
         await historyLocalDataProvider.cacheHistory(history: history);
         return Right(history);
