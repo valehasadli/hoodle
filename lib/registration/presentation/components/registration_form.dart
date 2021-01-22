@@ -34,7 +34,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
       listener: (context, state) {
         if (state.status == RegistrationStatus.success) {
           context.navigator.pushAndRemoveUntil(
-            Routes.homeScreen,
+            Routes.navigationScreen,
             (route) => false,
           );
         }
