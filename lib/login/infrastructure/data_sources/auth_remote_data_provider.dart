@@ -7,11 +7,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../common/errors/exceptions.dart';
 import '../../../common/utils/constants.dart' show kBaseUrl;
 import '../../../common/helpers/double_quote.dart';
-import '../../domain/entities/login_entity.dart';
 import '../models/login_model.dart';
 
 class AuthRemoteDataProvider {
-  Future<LoginEntity> login({
+  Future<LoginModel> login({
     @required String email,
     @required String password,
     @required String deviceName,
@@ -31,18 +30,7 @@ class AuthRemoteDataProvider {
     );
 
     if (response.statusCode == 200) {
-      LoginModel model = LoginModel.fromJson(json.decode(response.body));
-      return LoginEntity(
-        id: model.id,
-        name: model.name,
-        email: model.email,
-        emailVerifiedAt: model.emailVerifiedAt,
-        rememberToken: model.rememberToken,
-        isAdmin: model.isAdmin,
-        createdAt: model.createdAt,
-        updatedAt: model.updatedAt,
-        token: model.token,
-      );
+      return LoginModel.fromJson(json.decode(response.body));
     } else {
       throw ServerException();
     }
