@@ -10,10 +10,8 @@ import '../../../common/utils/constants.dart' show kBaseUrl;
 import '../models/history_model.dart';
 import '../models/meta_model.dart';
 
-import '../../domain/entities/history_entity.dart';
-
 class HistoryRemoteDataProvider {
-  Future<List<HistoryEntity>> fetchHistory({@required int page}) async {
+  Future<Map> fetchHistory({@required int page}) async {
     final String url = '$kBaseUrl/mobile/user/translation/history?page=$page';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -30,34 +28,13 @@ class HistoryRemoteDataProvider {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
 
-      final List<HistoryModel> model = (data['data'] as List)
+      final List<HistoryModel> history = (data['data'] as List)
           .map((history) => HistoryModel.fromJson(history))
           .toList();
 
       final MetaModel meta = MetaModel.fromJson(data['meta']);
 
-      return model
-          .map(
-            (history) => HistoryEntity(
-              id: history.id,
-              userId: history.userId,
-              key: history.key,
-              keyLanguageId: history.keyLanguageId,
-              keyLanguageLocale: history.keyLanguageLocale,
-              value: history.value,
-              valueLanguageId: history.valueLanguageId,
-              valueLanguageLocale: history.valueLanguageLocale,
-              count: history.count,
-              favorite: history.favorite,
-              history: history.history,
-              createdAt: history.createdAt,
-              updatedAt: history.updatedAt,
-              currentPage: meta.currentPage,
-              lastPage: meta.lastPage,
-              total: meta.total,
-            ),
-          )
-          .toList();
+      return {'history': history, 'meta': meta};
     } else {
       throw ServerException();
     }

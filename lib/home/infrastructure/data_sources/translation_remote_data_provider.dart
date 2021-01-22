@@ -8,10 +8,9 @@ import '../../../common/errors/exceptions.dart';
 import '../../../common/helpers/double_quote.dart';
 import '../../../common/utils/constants.dart' show kBaseUrl;
 import '../models/translation_model.dart';
-import '../../domain/entities/translation_entity.dart';
 
 class TranslationRemoteDataProvider {
-  Future<TranslationEntity> translate({
+  Future<TranslationModel> translate({
     @required String key,
     @required String keyLanguageLocale,
     @required String valueLanguageLocale,
@@ -34,25 +33,7 @@ class TranslationRemoteDataProvider {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      TranslationModel model = TranslationModel.fromJson(
-        json.decode(response.body),
-      );
-
-      return TranslationEntity(
-        id: model.id,
-        userId: model.userId,
-        key: model.key,
-        keyLanguageId: model.keyLanguageId,
-        keyLanguageLocale: model.keyLanguageLocale,
-        value: model.value,
-        valueLanguageId: model.valueLanguageId,
-        valueLanguageLocale: model.valueLanguageLocale,
-        count: model.count,
-        favorite: model.favorite,
-        history: model.history,
-        createdAt: model.createdAt,
-        updatedAt: model.updatedAt,
-      );
+      return TranslationModel.fromJson(json.decode(response.body));
     } else {
       throw ServerException();
     }

@@ -51,6 +51,7 @@ final headingStyle = TextStyle(
 );
 
 const String kBaseUrl = 'https://hoodle-translation-api.herokuapp.com/api';
+
 const Duration kAnimationDuration = Duration(milliseconds: 200);
 const int kRouteAnimationDuration = 200;
 const kRouteTransitionBuilder = TransitionsBuilders.slideLeft;
