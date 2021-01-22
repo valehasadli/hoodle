@@ -8,6 +8,7 @@ import '../../domain/entities/translation_entity.dart';
 import '../../domain/interfaces/translation_interface.dart';
 import '../data_sources/translation_remote_data_provider.dart';
 import '../data_sources/translation_local_data_provider.dart';
+import '../models/translation_model.dart';
 
 class TranslationRepository implements TranslationInterface {
   final Connectivity connectivity;
@@ -28,12 +29,29 @@ class TranslationRepository implements TranslationInterface {
   }) async {
     if (await connectivity.isConnected) {
       try {
-        final TranslationEntity translation =
+        final TranslationModel model =
             await translationRemoteDataProvider.translate(
           key: key,
           keyLanguageLocale: keyLanguageLocale,
           valueLanguageLocale: valueLanguageLocale,
         );
+
+        final TranslationEntity translation = TranslationEntity(
+          id: model.id,
+          userId: model.userId,
+          key: model.key,
+          keyLanguageId: model.keyLanguageId,
+          keyLanguageLocale: model.keyLanguageLocale,
+          value: model.value,
+          valueLanguageId: model.valueLanguageId,
+          valueLanguageLocale: model.valueLanguageLocale,
+          count: model.count,
+          favorite: model.favorite,
+          history: model.history,
+          createdAt: model.createdAt,
+          updatedAt: model.updatedAt,
+        );
+
         await translationLocalDataProvider.cacheTranslation(
           translation: translation,
         );
