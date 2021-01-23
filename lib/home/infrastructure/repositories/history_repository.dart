@@ -26,7 +26,6 @@ class HistoryRepository implements HistoryInterface {
   Future<Either<Failure, List<HistoryEntity>>> fetchHistory({
     @required int page,
   }) async {
-    print('connected: ${await connectivity.isConnected}');
     if (await connectivity.isConnected) {
       try {
         final Map data = await historyRemoteDataProvider.fetchHistory(
