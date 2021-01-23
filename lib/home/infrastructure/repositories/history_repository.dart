@@ -26,6 +26,7 @@ class HistoryRepository implements HistoryInterface {
   Future<Either<Failure, List<HistoryEntity>>> fetchHistory({
     @required int page,
   }) async {
+    print('connected: ${await connectivity.isConnected}');
     if (await connectivity.isConnected) {
       try {
         final Map data = await historyRemoteDataProvider.fetchHistory(
@@ -58,15 +59,38 @@ class HistoryRepository implements HistoryInterface {
             )
             .toList();
 
-        await historyLocalDataProvider.cacheHistory(history: history);
+        await historyLocalDataProvider.cacheHistory(model: historyModel);
         return Right(history);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
       try {
-        final List<HistoryEntity> history =
+        final List<HistoryModel> model =
             await historyLocalDataProvider.fetchHistory();
+
+        final List<HistoryEntity> history = model
+            .map(
+              (history) => HistoryEntity(
+                id: history.id,
+                userId: history.userId,
+                key: history.key,
+                keyLanguageId: history.keyLanguageId,
+                keyLanguageLocale: history.keyLanguageLocale,
+                value: history.value,
+                valueLanguageId: history.valueLanguageId,
+                valueLanguageLocale: history.valueLanguageLocale,
+                count: history.count,
+                favorite: history.favorite,
+                history: history.history,
+                createdAt: history.createdAt,
+                updatedAt: history.updatedAt,
+                currentPage: 1,
+                lastPage: 1,
+                total: model.length,
+              ),
+            )
+            .toList();
         return Right(history);
       } on CacheException {
         return Left(CacheFailure());

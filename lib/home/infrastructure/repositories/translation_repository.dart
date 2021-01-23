@@ -36,25 +36,9 @@ class TranslationRepository implements TranslationInterface {
           valueLanguageLocale: valueLanguageLocale,
         );
 
-        final TranslationEntity translation = TranslationEntity(
-          id: model.id,
-          userId: model.userId,
-          key: model.key,
-          keyLanguageId: model.keyLanguageId,
-          keyLanguageLocale: model.keyLanguageLocale,
-          value: model.value,
-          valueLanguageId: model.valueLanguageId,
-          valueLanguageLocale: model.valueLanguageLocale,
-          count: model.count,
-          favorite: model.favorite,
-          history: model.history,
-          createdAt: model.createdAt,
-          updatedAt: model.updatedAt,
-        );
+        final TranslationEntity translation = _entity(model: model);
 
-        await translationLocalDataProvider.cacheTranslation(
-          translation: translation,
-        );
+        await translationLocalDataProvider.cacheTranslation(model: model);
 
         return Right(translation);
       } on ServerException {
@@ -62,12 +46,32 @@ class TranslationRepository implements TranslationInterface {
       }
     } else {
       try {
-        final TranslationEntity translation =
+        final TranslationModel model =
             await translationLocalDataProvider.getTranslation();
+
+        final TranslationEntity translation = _entity(model: model);
         return Right(translation);
       } on CacheException {
         return Left(CacheFailure());
       }
     }
+  }
+
+  TranslationEntity _entity({@required TranslationModel model}) {
+    return TranslationEntity(
+      id: model.id,
+      userId: model.userId,
+      key: model.key,
+      keyLanguageId: model.keyLanguageId,
+      keyLanguageLocale: model.keyLanguageLocale,
+      value: model.value,
+      valueLanguageId: model.valueLanguageId,
+      valueLanguageLocale: model.valueLanguageLocale,
+      count: model.count,
+      favorite: model.favorite,
+      history: model.history,
+      createdAt: model.createdAt,
+      updatedAt: model.updatedAt,
+    );
   }
 }
