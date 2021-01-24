@@ -6,7 +6,7 @@ import '../../home/presentation/home_screen.dart';
 import '../../profile/presentation/profile_screen.dart';
 import '../../timeline/presentation/timeline_screen.dart';
 
-import 'components/custom_tab_bar.dart';
+import '../components/custom_tab_bar.dart';
 
 class NavigationScreen extends StatefulWidget {
   @override

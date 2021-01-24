@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route_annotations.dart';
-import 'package:hoodle/navigation/presentation/navigation_screen.dart';
+
+import '../common/screens/navigation_screen.dart';
 
 import '../complete_profile/presentation/complete_profile_screen.dart';
 import '../forgot_password/presentation/forgot_password_screen.dart';
