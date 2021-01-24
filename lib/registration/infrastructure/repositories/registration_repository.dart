@@ -5,14 +5,14 @@ import '../../../common/errors/failures.dart';
 import '../../../common/errors/exceptions.dart';
 
 import '../../domain/entities/registration_entity.dart';
-import '../../../common/platform/connectivity.dart';
+import '../../../common/platform/internet.dart';
 import '../../domain/interfaces/registration_interface.dart';
 import '../data_sources/registration_local_data_provider.dart';
 import '../data_sources/registration_remote_data_provider.dart';
 import '../models/registration_model.dart';
 
 class RegistrationRepository implements RegistrationInterface {
-  final Connectivity connectivity;
+  final Internet connectivity;
   final RegistrationRemoteDataProvider registrationRemoteDataProvider;
   final RegistrationLocalDataProvider registrationLocalDataProvider;
 
