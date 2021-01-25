@@ -14,12 +14,12 @@ import '../data_sources/auth_local_data_provider.dart';
 import '../models/login_model.dart';
 
 class AuthRepository implements LoginInterface, LogoutInterface {
-  final Internet connectivity;
+  final Internet internet;
   final AuthRemoteDataProvider authRemoteDataProvider;
   final AuthLocalDataProvider authLocalDataProvider;
 
   const AuthRepository({
-    @required this.connectivity,
+    @required this.internet,
     @required this.authRemoteDataProvider,
     @required this.authLocalDataProvider,
   });
@@ -30,7 +30,7 @@ class AuthRepository implements LoginInterface, LogoutInterface {
     @required String password,
     @required String deviceName,
   }) async {
-    if (await connectivity.isConnected) {
+    if (await internet.isConnected) {
       try {
         final LoginModel model = await authRemoteDataProvider.login(
           email: email,
@@ -63,7 +63,7 @@ class AuthRepository implements LoginInterface, LogoutInterface {
 
   @override
   Future<Either<Failure, void>> logout() async {
-    if (await connectivity.isConnected) {
+    if (await internet.isConnected) {
       try {
         await authRemoteDataProvider.logout();
         await authLocalDataProvider.cacheLogout();

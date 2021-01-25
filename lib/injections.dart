@@ -72,7 +72,7 @@ Future<void> loginDependencies() async {
   // Infrastructure Layer - repositories
   serviceLocator.registerLazySingleton(
     () => AuthRepository(
-      connectivity: serviceLocator(),
+      internet: serviceLocator(),
       authRemoteDataProvider: serviceLocator(),
       authLocalDataProvider: serviceLocator(),
     ),
@@ -106,7 +106,7 @@ Future<void> registrationDependencies() async {
   // Infrastructure Layer - repositories
   serviceLocator.registerLazySingleton(
     () => RegistrationRepository(
-      connectivity: serviceLocator(),
+      internet: serviceLocator(),
       registrationRemoteDataProvider: serviceLocator(),
       registrationLocalDataProvider: serviceLocator(),
     ),
@@ -174,7 +174,7 @@ Future<void> homeTranslationDependencies() async {
   // Infrastructure Layer - repositories
   serviceLocator.registerLazySingleton(
     () => TranslationRepository(
-      connectivity: serviceLocator(),
+      internet: serviceLocator(),
       translationRemoteDataProvider: serviceLocator(),
       translationLocalDataProvider: serviceLocator(),
     ),

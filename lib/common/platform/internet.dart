@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:data_connection_checker/data_connection_checker.dart';
 
-abstract class _InternetyInterface {
+abstract class _InternetInterface {
   Future<bool> get isConnected;
 }
 
-class Internet extends _InternetyInterface {
+class Internet extends _InternetInterface {
   final DataConnectionChecker _connectionChecker;
 
   Internet(this._connectionChecker);

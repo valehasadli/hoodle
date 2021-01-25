@@ -12,12 +12,12 @@ import '../data_sources/registration_remote_data_provider.dart';
 import '../models/registration_model.dart';
 
 class RegistrationRepository implements RegistrationInterface {
-  final Internet connectivity;
+  final Internet internet;
   final RegistrationRemoteDataProvider registrationRemoteDataProvider;
   final RegistrationLocalDataProvider registrationLocalDataProvider;
 
   const RegistrationRepository({
-    @required this.connectivity,
+    @required this.internet,
     @required this.registrationRemoteDataProvider,
     @required this.registrationLocalDataProvider,
   });
@@ -29,7 +29,7 @@ class RegistrationRepository implements RegistrationInterface {
     @required String password,
     @required String deviceName,
   }) async {
-    if (await connectivity.isConnected) {
+    if (await internet.isConnected) {
       try {
         final RegistrationModel model =
             await registrationRemoteDataProvider.registration(

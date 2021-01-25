@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../common/config/custom_size.dart';
+import '../../common/screens/connection_sensitive_screen.dart';
 import 'components/body.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,9 +10,11 @@ class HomeScreen extends StatelessWidget {
     CustomSize().init(context);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        backgroundColor: Color(0xFF4284F4),
-        body: Body(),
+      child: ConnectionSensitiveScreen(
+        child: Scaffold(
+          backgroundColor: Color(0xFF4284F4),
+          body: Body(),
+        ),
       ),
     );
   }
