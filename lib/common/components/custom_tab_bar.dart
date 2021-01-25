@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/config/custom_size.dart';
-import '../../../common/utils/constants.dart';
+import '../config/custom_size.dart';
+import '../utils/constants.dart';
 
 class CustomTabBar extends StatelessWidget {
   final List<IconData> icons;

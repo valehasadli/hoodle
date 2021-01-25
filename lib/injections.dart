@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 
 // common
-import './common/platform/connectivity.dart';
+import './common/platform/internet.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 
 // login
@@ -45,7 +45,7 @@ Future<void> init() async {
 Future<void> commonDependencies() async {
   // Common - core
   serviceLocator.registerLazySingleton(
-    () => Connectivity(serviceLocator()),
+    () => Internet(serviceLocator()),
   );
 
   // 3rd part packages that needs to be register.
@@ -72,7 +72,7 @@ Future<void> loginDependencies() async {
   // Infrastructure Layer - repositories
   serviceLocator.registerLazySingleton(
     () => AuthRepository(
-      connectivity: serviceLocator(),
+      internet: serviceLocator(),
       authRemoteDataProvider: serviceLocator(),
       authLocalDataProvider: serviceLocator(),
     ),
@@ -106,7 +106,7 @@ Future<void> registrationDependencies() async {
   // Infrastructure Layer - repositories
   serviceLocator.registerLazySingleton(
     () => RegistrationRepository(
-      connectivity: serviceLocator(),
+      internet: serviceLocator(),
       registrationRemoteDataProvider: serviceLocator(),
       registrationLocalDataProvider: serviceLocator(),
     ),
@@ -140,7 +140,7 @@ Future<void> homeHistoryDependencies() async {
   // Infrastructure Layer - repositories
   serviceLocator.registerLazySingleton(
     () => HistoryRepository(
-      connectivity: serviceLocator(),
+      internet: serviceLocator(),
       historyRemoteDataProvider: serviceLocator(),
       historyLocalDataProvider: serviceLocator(),
     ),
@@ -174,7 +174,7 @@ Future<void> homeTranslationDependencies() async {
   // Infrastructure Layer - repositories
   serviceLocator.registerLazySingleton(
     () => TranslationRepository(
-      connectivity: serviceLocator(),
+      internet: serviceLocator(),
       translationRemoteDataProvider: serviceLocator(),
       translationLocalDataProvider: serviceLocator(),
     ),

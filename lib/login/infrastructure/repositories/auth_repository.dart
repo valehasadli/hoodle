@@ -6,7 +6,7 @@ import '../../../common/errors/failures.dart';
 import '../../../common/errors/exceptions.dart';
 
 import '../../domain/entities/login_entity.dart';
-import '../../../common/platform/connectivity.dart';
+import '../../../common/platform/internet.dart';
 import '../../domain/interfaces/login_interface.dart';
 import '../../domain/interfaces/logout_interface.dart';
 import '../data_sources/auth_remote_data_provider.dart';
@@ -14,12 +14,12 @@ import '../data_sources/auth_local_data_provider.dart';
 import '../models/login_model.dart';
 
 class AuthRepository implements LoginInterface, LogoutInterface {
-  final Connectivity connectivity;
+  final Internet internet;
   final AuthRemoteDataProvider authRemoteDataProvider;
   final AuthLocalDataProvider authLocalDataProvider;
 
   const AuthRepository({
-    @required this.connectivity,
+    @required this.internet,
     @required this.authRemoteDataProvider,
     @required this.authLocalDataProvider,
   });
@@ -30,7 +30,7 @@ class AuthRepository implements LoginInterface, LogoutInterface {
     @required String password,
     @required String deviceName,
   }) async {
-    if (await connectivity.isConnected) {
+    if (await internet.isConnected) {
       try {
         final LoginModel model = await authRemoteDataProvider.login(
           email: email,
@@ -63,7 +63,7 @@ class AuthRepository implements LoginInterface, LogoutInterface {
 
   @override
   Future<Either<Failure, void>> logout() async {
-    if (await connectivity.isConnected) {
+    if (await internet.isConnected) {
       try {
         await authRemoteDataProvider.logout();
         await authLocalDataProvider.cacheLogout();

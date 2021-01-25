@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import '../../../common/errors/failures.dart';
 import '../../../common/errors/exceptions.dart';
 import '../../domain/entities/history_entity.dart';
-import '../../../common/platform/connectivity.dart';
+import '../../../common/platform/internet.dart';
 import '../../domain/interfaces/history_interface.dart';
 import '../data_sources/history_remote_data_provider.dart';
 import '../data_sources/history_local_data_provider.dart';
@@ -12,12 +12,12 @@ import '../models/history_model.dart';
 import '../models/meta_model.dart';
 
 class HistoryRepository implements HistoryInterface {
-  final Connectivity connectivity;
+  final Internet internet;
   final HistoryRemoteDataProvider historyRemoteDataProvider;
   final HistoryLocalDataProvider historyLocalDataProvider;
 
   HistoryRepository({
-    @required this.connectivity,
+    @required this.internet,
     @required this.historyRemoteDataProvider,
     @required this.historyLocalDataProvider,
   });
@@ -26,7 +26,7 @@ class HistoryRepository implements HistoryInterface {
   Future<Either<Failure, List<HistoryEntity>>> fetchHistory({
     @required int page,
   }) async {
-    if (await connectivity.isConnected) {
+    if (await internet.isConnected) {
       try {
         final Map data = await historyRemoteDataProvider.fetchHistory(
           page: page,

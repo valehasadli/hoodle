@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../common/errors/failures.dart';
 import '../../../common/errors/exceptions.dart';
-import '../../../common/platform/connectivity.dart';
+import '../../../common/platform/internet.dart';
 import '../../domain/entities/translation_entity.dart';
 import '../../domain/interfaces/translation_interface.dart';
 import '../data_sources/translation_remote_data_provider.dart';
@@ -11,12 +11,12 @@ import '../data_sources/translation_local_data_provider.dart';
 import '../models/translation_model.dart';
 
 class TranslationRepository implements TranslationInterface {
-  final Connectivity connectivity;
+  final Internet internet;
   final TranslationRemoteDataProvider translationRemoteDataProvider;
   final TranslationLocalDataProvider translationLocalDataProvider;
 
   TranslationRepository({
-    @required this.connectivity,
+    @required this.internet,
     @required this.translationRemoteDataProvider,
     @required this.translationLocalDataProvider,
   });
@@ -27,7 +27,7 @@ class TranslationRepository implements TranslationInterface {
     @required String keyLanguageLocale,
     @required String valueLanguageLocale,
   }) async {
-    if (await connectivity.isConnected) {
+    if (await internet.isConnected) {
       try {
         final TranslationModel model =
             await translationRemoteDataProvider.translate(
