@@ -19,11 +19,9 @@ class _ConnectionStatusBarState extends State<ConnectionStatusBar> {
     DataConnectionChecker().onStatusChange.listen((status) {
       switch (status) {
         case DataConnectionStatus.connected:
-          print('connected');
           setStateIfMounted(() => _isConnected = true);
           break;
         case DataConnectionStatus.disconnected:
-          print('disconnected');
           setStateIfMounted(() => _isConnected = false);
           break;
       }
