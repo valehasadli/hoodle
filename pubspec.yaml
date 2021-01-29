@@ -46,6 +46,7 @@ dependencies:
   cached_network_image: ^2.5.0
   material_design_icons_flutter: ^4.0.5855
   google_sign_in: ^4.5.9
+  pusher: ^1.0.0
 
 dev_dependencies:
   flutter_test:

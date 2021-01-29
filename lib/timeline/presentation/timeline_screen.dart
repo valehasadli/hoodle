@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../common/config/custom_size.dart';
 
+import '../../common/screens/connection_sensitive_screen.dart';
+
 import 'components/body.dart';
 
 class TimelineScreen extends StatelessWidget {
@@ -9,8 +11,10 @@ class TimelineScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     CustomSize().init(context);
 
-    return Scaffold(
-      body: Body(),
+    return ConnectionSensitiveScreen(
+      child: Scaffold(
+        body: Body(),
+      ),
     );
   }
 }
