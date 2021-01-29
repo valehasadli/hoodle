@@ -36,7 +36,7 @@ class AuthRemoteDataProvider {
     }
   }
 
-  Future<void> logout() async {
+  Future<bool> logout() async {
     final String url = '$kBaseUrl/mobile/auth/logout';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -50,8 +50,10 @@ class AuthRemoteDataProvider {
       },
     );
 
-    if (response.statusCode != 204) {
-      throw ServerException();
+    if (response.statusCode == 204) {
+      return true;
     }
+
+    return false;
   }
 }

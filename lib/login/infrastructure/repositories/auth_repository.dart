@@ -62,11 +62,11 @@ class AuthRepository implements LoginInterface, LogoutInterface {
   }
 
   @override
-  Future<Either<Failure, void>> logout() async {
+  Future<Either<Failure, bool>> logout() async {
     if (await internet.isConnected) {
       try {
-        await authRemoteDataProvider.logout();
-        await authLocalDataProvider.cacheLogout();
+        final bool logout = await authRemoteDataProvider.logout();
+        if (logout) await authLocalDataProvider.cacheLogout();
 
         return Right(true);
       } on ServerException {

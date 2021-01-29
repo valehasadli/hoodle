@@ -32,6 +32,9 @@ import './home/infrastructure/repositories/translation_repository.dart';
 import './home/application/translation_facade_service.dart';
 import './home/presentation/bloc/translation/translation_bloc.dart';
 
+// home - auth
+import './home/presentation/bloc/auth/auth_bloc.dart';
+
 final GetIt serviceLocator = GetIt.instance;
 
 Future<void> init() async {
@@ -40,6 +43,7 @@ Future<void> init() async {
   registrationDependencies();
   homeHistoryDependencies();
   homeTranslationDependencies();
+  homeAuthDependencies();
 }
 
 Future<void> commonDependencies() async {
@@ -187,5 +191,12 @@ Future<void> homeTranslationDependencies() async {
 
   serviceLocator.registerLazySingleton(
     () => TranslationLocalDataProvider(),
+  );
+}
+
+Future<void> homeAuthDependencies() async {
+  // Presentation Layer - Blocs
+  serviceLocator.registerFactory(
+    () => AuthBloc(),
   );
 }
