@@ -10,7 +10,9 @@ class TimelineFacadeService implements TimelineInterface {
 
   const TimelineFacadeService({@required this.repository});
 
-  Future<Either<Failure, List<TimelineEntity>>> fetchTimeline() async {
-    return await repository.fetchTimeline();
+  Future<Either<Failure, List<TimelineEntity>>> fetchTimeline({
+    @required int page,
+  }) async {
+    return await repository.fetchTimeline(page: page);
   }
 }

@@ -5,8 +5,8 @@ import 'package:form_validator/form_validator.dart';
 
 import '../../../common/utils/constants.dart';
 import '../../../common/config/custom_size.dart';
-import '../../../common/components/default_button.dart';
-import '../../../common/components/custom_suffix_icon.dart';
+import '../../../common/presentation/components/default_button.dart';
+import '../../../common/presentation/components/custom_suffix_icon.dart';
 import '../../../common/helpers/email_validator.dart';
 import '../../../common/helpers/password_validator.dart';
 

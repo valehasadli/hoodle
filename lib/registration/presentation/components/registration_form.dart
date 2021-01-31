@@ -5,8 +5,8 @@ import 'package:auto_route/auto_route.dart';
 
 import '../../../common/utils/constants.dart';
 import '../../../common/config/custom_size.dart';
-import '../../../common/components/custom_suffix_icon.dart';
-import '../../../common/components/default_button.dart';
+import '../../../common/presentation/components/custom_suffix_icon.dart';
+import '../../../common/presentation/components/default_button.dart';
 import '../../../common/helpers/password_validator.dart';
 import '../../../common/helpers/email_validator.dart';
 import '../../../common/helpers/confirm_password_validator.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../common/config/custom_size.dart';
-import '../../common/components/connection_status_bar.dart';
+import '../config/custom_size.dart';
+import 'components/connection_status_bar.dart';
 
 class ConnectionSensitiveScreen extends StatefulWidget {
   final Widget child;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../common/config/custom_size.dart';
-import '../../common/screens/connection_sensitive_screen.dart';
+import '../../common/presentation/connection_sensitive_screen.dart';
 import 'components/body.dart';
 
 class LoginSuccessScreen extends StatelessWidget {

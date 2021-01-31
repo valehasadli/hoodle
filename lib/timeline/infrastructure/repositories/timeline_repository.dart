@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:meta/meta.dart';
 import 'package:dartz/dartz.dart';
 
@@ -24,10 +23,14 @@ class TimelineRepository implements TimelineInterface {
   });
 
   @override
-  Future<Either<Failure, List<TimelineEntity>>> fetchTimeline() async {
+  Future<Either<Failure, List<TimelineEntity>>> fetchTimeline({
+    @required int page,
+  }) async {
     if (await internet.isConnected) {
       try {
-        final Map data = await timelineRemoteDataProvider.fetchTimeline();
+        final Map data = await timelineRemoteDataProvider.fetchTimeline(
+          page: page,
+        );
 
         final MetaModel metaModel = data['meta'];
         final List<TimelineModel> timelineModel = data['timeline'];
@@ -37,6 +40,9 @@ class TimelineRepository implements TimelineInterface {
               (timeline) => TimelineEntity(
                 id: timeline.id,
                 message: timeline.message,
+                currentPage: metaModel.currentPage,
+                lastPage: metaModel.lastPage,
+                total: metaModel.total,
               ),
             )
             .toList();
@@ -48,7 +54,25 @@ class TimelineRepository implements TimelineInterface {
         return Left(ServerFailure());
       }
     } else {
-      throw SocketException('internet connection problem');
+      try {
+        final List<TimelineModel> model =
+            await timelineLocalDataProvider.fetchTimeline();
+
+        final List<TimelineEntity> timeline = model
+            .map(
+              (timeline) => TimelineEntity(
+                id: timeline.id,
+                message: timeline.message,
+                currentPage: 1,
+                lastPage: 1,
+                total: model.length,
+              ),
+            )
+            .toList();
+        return Right(timeline);
+      } on CacheException {
+        return Left(CacheFailure());
+      }
     }
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/components/term_and_condition_text.dart';
 import '../../../common/config/custom_size.dart';
 import '../../../common/utils/constants.dart';
+
+import '../../../common/presentation/components/term_and_condition_text.dart';
 
 import 'complete_profile_form.dart';
 

@@ -9,7 +9,7 @@ import '../../../injections.dart';
 import '../../../routes/router.gr.dart';
 import '../bloc/auth/auth_bloc.dart';
 
-class HomeAppBar extends PreferredSize {
+class AuthAppBar extends PreferredSize {
   @override
   Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
 

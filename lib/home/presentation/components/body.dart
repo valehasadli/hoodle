@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'form/translation_form.dart';
-import 'history/translation_history.dart';
-import 'home_app_bar.dart';
+import '../../../common/presentation/components/auth_app_bar.dart';
+
+import 'translation_form/translation_form.dart';
+import 'translation_history/translation_history.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -12,7 +13,7 @@ class Body extends StatelessWidget {
       child: CustomScrollView(
         controller: _scroll,
         slivers: [
-          HomeAppBar(),
+          AuthAppBar(),
           SliverToBoxAdapter(
             child: TranslationForm(),
           ),

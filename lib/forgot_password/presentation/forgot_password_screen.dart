@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../common/components/custom_app_bar.dart';
 import '../../common/config/custom_size.dart';
+import '../../common/presentation/components/guest_app_bar.dart';
+
 import 'components/body.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class ForgotPasswordScreen extends StatelessWidget {
     CustomSize().init(context);
 
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: GuestAppBar(),
       body: Body(),
     );
   }

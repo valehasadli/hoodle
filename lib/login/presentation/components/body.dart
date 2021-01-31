@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../common/config/custom_size.dart';
-import '../../../common/components/social_card.dart';
-import '../../../common/components/no_account_text.dart';
+import '../../../common/presentation/components/social_card.dart';
+import '../../../common/presentation/components/no_account_text.dart';
 
 import 'login_form.dart';
 

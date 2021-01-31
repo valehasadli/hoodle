@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../config/custom_size.dart';
+import '../../config/custom_size.dart';
+
 import 'rounded_icon_button.dart';
 
-class CustomAppBar extends PreferredSize {
+class GuestAppBar extends PreferredSize {
   @override
   Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
 

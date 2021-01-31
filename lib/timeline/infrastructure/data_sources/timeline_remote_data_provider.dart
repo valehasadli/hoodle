@@ -1,3 +1,4 @@
+import 'package:meta/meta.dart';
 import 'dart:convert';
 import 'dart:io';
 
@@ -10,12 +11,12 @@ import '../../../common/models/meta_model.dart';
 import '../models/timeline_model.dart';
 
 class TimelineRemoteDataProvider {
-  Future<Map> fetchTimeline() async {
-    final String url = '$kBaseUrl/mobile/timeline';
+  Future<Map> fetchTimeline({@required int page}) async {
+    final String url = '$kBaseUrl/mobile/timeline?page=$page';
     SharedPreferences preferences = await SharedPreferences.getInstance();
     final String token = DoubleQuote.trim(preferences.getString('token'));
 
-    final http.Response response = await http.post(
+    final http.Response response = await http.get(
       url,
       headers: <String, String>{
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',

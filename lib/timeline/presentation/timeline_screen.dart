@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../common/config/custom_size.dart';
 
-import '../../common/screens/connection_sensitive_screen.dart';
+import '../../common/presentation/connection_sensitive_screen.dart';
 
 import 'components/body.dart';
 
@@ -13,6 +13,7 @@ class TimelineScreen extends StatelessWidget {
 
     return ConnectionSensitiveScreen(
       child: Scaffold(
+        backgroundColor: Color(0xFF4284F4),
         body: Body(),
       ),
     );

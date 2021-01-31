@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import '../../../routes/router.gr.dart';
 
-import '../../../common/components/default_button.dart';
+import '../../../common/presentation/components/default_button.dart';
 import '../../../common/config/custom_size.dart';
 import '../../../common/utils/constants.dart';
 import 'splash_content.dart';

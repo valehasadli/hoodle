@@ -21,7 +21,7 @@ class TranslationHistory extends StatelessWidget {
     return BlocProvider<HistoryBloc>(
       create: (BuildContext context) => serviceLocator<HistoryBloc>()
         ..add(
-          HistoryFetch(),
+          const HistoryFetch(),
         ),
       child: Container(
         decoration: BoxDecoration(
