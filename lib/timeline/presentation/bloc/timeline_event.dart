@@ -10,7 +10,3 @@ abstract class TimelineEvent extends Equatable {
 class TimelineFetch extends TimelineEvent {
   const TimelineFetch();
 }
-
-class TimelineScrolled extends TimelineEvent {
-  const TimelineScrolled();
-}

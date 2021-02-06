@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hoodle/common/errors/failures.dart';
+
+import '../../../../common/errors/failures.dart';
 
 import '../../../../login/api/auth_api.dart';
 

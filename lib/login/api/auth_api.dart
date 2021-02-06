@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:hoodle/injections.dart';
-import 'package:hoodle/login/domain/interfaces/logout_interface.dart';
 
+import '../../injections.dart';
 import '../../common/errors/failures.dart';
+
+import '../domain/interfaces/logout_interface.dart';
 import '../application/auth_facade_service.dart';
 
 class AuthApi implements LogoutInterface {

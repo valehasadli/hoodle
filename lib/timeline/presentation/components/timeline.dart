@@ -21,10 +21,10 @@ class Timeline extends StatelessWidget {
           const TimelineFetch(),
         ),
       child: Container(
+        color: Colors.grey.shade200,
         height: CustomSize.screenHeight,
         width: double.infinity,
-        child: BlocConsumer<TimelineBloc, TimelineState>(
-          listener: (context, state) {},
+        child: BlocBuilder<TimelineBloc, TimelineState>(
           builder: (context, state) {
             if (state.status == TimelineStatus.progress) {
               return Progress();

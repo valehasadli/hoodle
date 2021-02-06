@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import '../../../common/errors/failures.dart';
 import '../../../common/errors/exceptions.dart';
 import '../../../common/platform/internet.dart';
-import '../../../common/models/meta_model.dart';
 import '../../domain/entities/timeline_entity.dart';
 import '../../domain/interfaces/timeline_interface.dart';
 import '../data_sources/timeline_remote_data_provider.dart';
@@ -23,26 +22,17 @@ class TimelineRepository implements TimelineInterface {
   });
 
   @override
-  Future<Either<Failure, List<TimelineEntity>>> fetchTimeline({
-    @required int page,
-  }) async {
+  Future<Either<Failure, List<TimelineEntity>>> fetchTimeline() async {
     if (await internet.isConnected) {
       try {
-        final Map data = await timelineRemoteDataProvider.fetchTimeline(
-          page: page,
-        );
-
-        final MetaModel metaModel = data['meta'];
-        final List<TimelineModel> timelineModel = data['timeline'];
+        final List<TimelineModel> timelineModel =
+            await timelineRemoteDataProvider.fetchTimeline();
 
         final List<TimelineEntity> timeline = timelineModel
             .map(
               (timeline) => TimelineEntity(
                 id: timeline.id,
                 message: timeline.message,
-                currentPage: metaModel.currentPage,
-                lastPage: metaModel.lastPage,
-                total: metaModel.total,
               ),
             )
             .toList();
@@ -63,9 +53,7 @@ class TimelineRepository implements TimelineInterface {
               (timeline) => TimelineEntity(
                 id: timeline.id,
                 message: timeline.message,
-                currentPage: 1,
-                lastPage: 1,
-                total: model.length,
+              
               ),
             )
             .toList();

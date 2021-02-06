@@ -26,34 +26,6 @@ class TimelineBloc extends Bloc<TimelineEvent, TimelineState> {
   ) async* {
     if (event is TimelineFetch) {
       yield* _mapFetchToState(event, state);
-    } else if (event is TimelineScrolled) {
-      yield* _mapScrolledToState(event, state);
-    }
-  }
-
-  Stream<TimelineState> _mapScrolledToState(
-    TimelineScrolled event,
-    TimelineState state,
-  ) async* {
-    if (state.currentPage <= state.lastPage &&
-        state.status != TimelineStatus.dirty) {
-      yield state.copyWith(status: TimelineStatus.dirty);
-
-      final Either<Failure, List<TimelineEntity>> failureOrTimeline =
-          await service.fetchTimeline(page: state.currentPage + 1);
-
-      yield failureOrTimeline.fold(
-        (failure) => state.copyWith(status: TimelineStatus.failure),
-        (history) {
-          state.timeline.addAll(history);
-          return state.copyWith(
-            status: TimelineStatus.success,
-            currentPage: history.first.currentPage,
-            lastPage: history.first.lastPage,
-            total: history.first.total,
-          );
-        },
-      );
     }
   }
 
@@ -64,19 +36,14 @@ class TimelineBloc extends Bloc<TimelineEvent, TimelineState> {
     yield state.copyWith(status: TimelineStatus.progress);
 
     final Either<Failure, List<TimelineEntity>> failureOrTimeline =
-        await service.fetchTimeline(page: state.currentPage);
+        await service.fetchTimeline();
 
     yield failureOrTimeline.fold(
       (failure) => state.copyWith(status: TimelineStatus.failure),
-      (timeline) => timeline.isNotEmpty
-          ? state.copyWith(
-              timeline: timeline,
-              status: TimelineStatus.success,
-              currentPage: timeline.first.currentPage,
-              lastPage: timeline.first.lastPage,
-              total: timeline.first.total,
-            )
-          : state,
+      (timeline) => state.copyWith(
+        timeline: timeline,
+        status: TimelineStatus.success,
+      ),
     );
   }
 }
