@@ -21,20 +21,23 @@ class _BodyState extends State<Body> {
         onConnectionStateChange: (ConnectionStateChange state) async {
       print('stateChange ${state.toJson()}');
       if (pusher != null && state.currentState == 'CONNECTED') {
-        final String socketId = pusher.getSocketId();
-        print(
-          'pusher socket id: $socketId',
-        ); // Laravel echo will subscribe the channel with full namespace.
-        // Ex: App\Events
-        final Echo echo = Echo(<String, dynamic>{
-          'broadcaster': 'pusher',
-          'client': pusher,
-        });
-        echo.channel('timeline').listen('timeline.update', (event) {
-          print('event: $event');
-          // final Message msg = Message.fromJson(message);
-          // messages.add(msg);
-        });
+        pusher.subscribe('timeline').bind('timeline.update',
+            (event) => print("Event Kamran" + event.toString()));
+
+        // final String socketId = pusher.getSocketId();
+        // print(
+        //   'pusher socket id: $socketId',
+        // ); // Laravel echo will subscribe the channel with full namespace.
+        // // Ex: App\Events
+        // final Echo echo = Echo(<String, dynamic>{
+        //   'broadcaster': 'pusher',
+        //   'client': pusher,
+        // });
+        // echo.channel('timeline').listen('timeline.update', (event) {
+        //   print('event: $event');
+        //   // final Message msg = Message.fromJson(message);
+        //   // messages.add(msg);
+        // });
       }
     });
   }
