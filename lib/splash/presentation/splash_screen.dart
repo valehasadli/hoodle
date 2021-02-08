@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../common/config/custom_size.dart';
+import '../../common/config/responsive.dart';
 import '../../common/presentation/connection_sensitive_screen.dart';
 import 'components/body.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    CustomSize().init(context);
+    Responsive().init(context);
     return ConnectionSensitiveScreen(
       child: Scaffold(
         resizeToAvoidBottomInset: false,

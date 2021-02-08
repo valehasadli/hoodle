@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-
 import 'package:auto_route/auto_route.dart';
-import '../../../routes/router.gr.dart';
 
+import '../../../routes/router.gr.dart';
 import '../../../common/presentation/components/default_button.dart';
-import '../../../common/config/custom_size.dart';
-import '../../../common/utils/constants.dart';
+import '../../../common/config/responsive.dart';
+import '../../../common/utils/theme_constants.dart';
+import '../../../common/utils/animation_constants.dart';
+
 import 'splash_content.dart';
 
 class Body extends StatefulWidget {

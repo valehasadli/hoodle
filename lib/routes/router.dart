@@ -13,8 +13,7 @@ import '../profile/presentation/profile_screen.dart';
 import '../timeline/presentation/timeline_screen.dart';
 import '../socket/presentation/socket_screen.dart';
 
-import '../common/utils/constants.dart'
-    show kRouteAnimationDuration, kRouteTransitionBuilder;
+import '../common/utils/route_constants.dart';
 
 import 'guards/auth_guard.dart';
 import 'guards/guest_guard.dart';

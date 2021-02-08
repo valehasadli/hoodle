@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../common/errors/exceptions.dart';
-import '../../../common/utils/constants.dart' show kBaseUrl;
+import '../../../common/utils/api_constants.dart' show kBaseUrl;
 import '../../../common/helpers/double_quote.dart';
 import '../models/login_model.dart';
 
@@ -38,6 +38,27 @@ class AuthRemoteDataProvider {
 
   Future<bool> logout() async {
     final String url = '$kBaseUrl/mobile/auth/logout';
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String token = DoubleQuote.trim(prefs.getString('token'));
+
+    final http.Response response = await http.post(
+      url,
+      headers: {
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+      },
+    );
+
+    if (response.statusCode == 204) {
+      return true;
+    }
+
+    return false;
+  }
+
+   Future<bool> tokenStatus() async {
+    final String url = '$kBaseUrl/mobile/auth/token_status';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final String token = DoubleQuote.trim(prefs.getString('token'));

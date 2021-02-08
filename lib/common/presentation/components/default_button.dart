@@ -2,8 +2,8 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import '../../utils/constants.dart';
-import '../../config/custom_size.dart';
+import '../../utils/theme_constants.dart';
+import '../../config/responsive.dart';
 
 class DefaultButton extends StatefulWidget {
   final String text;

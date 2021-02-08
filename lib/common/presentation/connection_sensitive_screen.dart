@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../config/custom_size.dart';
+import '../config/responsive.dart';
 import 'components/connection_status_bar.dart';
 
 class ConnectionSensitiveScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class ConnectionSensitiveScreen extends StatefulWidget {
 class _ConnectionSensitiveScreenState extends State<ConnectionSensitiveScreen> {
   @override
   Widget build(BuildContext context) {
-    CustomSize().init(context);
+    Responsive().init(context);
 
     return Stack(
       children: [

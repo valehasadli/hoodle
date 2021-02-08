@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../injections.dart';
-import '../../../common/config/custom_size.dart';
+import '../../../common/config/responsive.dart';
 
 import '../bloc/timeline_bloc.dart';
 import '../../domain/entities/timeline_entity.dart';
@@ -22,7 +22,7 @@ class Timeline extends StatelessWidget {
         ),
       child: Container(
         color: Colors.grey.shade200,
-        height: CustomSize.screenHeight,
+        height: Responsive.screenHeight,
         width: double.infinity,
         child: BlocBuilder<TimelineBloc, TimelineState>(
           builder: (context, state) {

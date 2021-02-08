@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/config/custom_size.dart';
-import '../../../common/utils/constants.dart';
+import '../../../common/config/responsive.dart';
+import '../../../common/utils/theme_constants.dart';
 
 class SplashContent extends StatelessWidget {
   final String text;

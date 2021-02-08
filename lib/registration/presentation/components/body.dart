@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/config/custom_size.dart';
-import '../../../common/utils/constants.dart';
+import '../../../common/config/responsive.dart';
+import '../../../common/utils/theme_constants.dart';
 
 import '../../../common/presentation/components/social_card.dart';
 import '../../../common/presentation/components/term_and_condition_text.dart';
@@ -21,19 +21,19 @@ class Body extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: CustomSize.screenHeight * 0.04),
+                SizedBox(height: Responsive.screenHeight * 0.04),
                 Text(
                   'Register Account',
-                  style: headingStyle,
+                  style: kHeadingStyle,
                 ),
                 SizedBox(height: getProportionateScreenWidth(10)),
                 Text(
                   'Complete your details or continue \nwith social media',
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: CustomSize.screenHeight * 0.04),
+                SizedBox(height: Responsive.screenHeight * 0.04),
                 RegistrationForm(),
-                SizedBox(height: CustomSize.screenHeight * 0.04),
+                SizedBox(height: Responsive.screenHeight * 0.04),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

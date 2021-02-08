@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../common/presentation/components/custom_suffix_icon.dart';
 import '../../../common/presentation/components/default_button.dart';
 import '../../../common/presentation/components/form_error.dart';
-import '../../../common/config/custom_size.dart';
-import '../../../common/utils/constants.dart';
+import '../../../common/config/responsive.dart';
+import '../../../common/utils/error_constants.dart';
 
 class CompleteProfileForm extends StatefulWidget {
   @override

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../common/utils/constants.dart';
-import '../../../../../common/config/custom_size.dart';
+import '../../../../../common/utils/theme_constants.dart';
+import '../../../../../common/config/responsive.dart';
 
 import '../../../bloc/translation/translation_bloc.dart';
 

@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../common/errors/exceptions.dart';
-import '../../../common/utils/constants.dart' show kBaseUrl;
+import '../../../common/utils/api_constants.dart' show kBaseUrl;
 import '../../../common/helpers/double_quote.dart';
 import '../models/timeline_model.dart';
 

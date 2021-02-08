@@ -4,9 +4,10 @@ import '../../common/errors/failures.dart';
 import '../domain/entities/login_entity.dart';
 import '../domain/interfaces/login_interface.dart';
 import '../domain/interfaces/logout_interface.dart';
+import '../domain/interfaces/token_interface.dart';
 import '../infrastructure/repositories/auth_repository.dart';
 
-class AuthFacadeService implements LoginInterface, LogoutInterface {
+class AuthFacadeService implements LoginInterface, LogoutInterface, TokenInterface {
   final AuthRepository repository;
 
   const AuthFacadeService({@required this.repository});
@@ -25,5 +26,9 @@ class AuthFacadeService implements LoginInterface, LogoutInterface {
 
   Future<Either<Failure, bool>> logout() async {
     return await repository.logout();
+  }
+
+  Future<Either<Failure, bool>> tokenStatus() async {
+    return await repository.tokenStatus();
   }
 }

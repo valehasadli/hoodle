@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 import '../../../common/errors/exceptions.dart';
-import '../../../common/utils/constants.dart' show kBaseUrl;
+import '../../../common/utils/api_constants.dart' show kBaseUrl;
 import '../models/registration_model.dart';
 
 class RegistrationRemoteDataProvider {

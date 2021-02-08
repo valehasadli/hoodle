@@ -34,7 +34,7 @@ class HistoryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: CustomSize.screenWidth * 0.7,
+                  width: Responsive.screenWidth * 0.7,
                   child: Text(
                     history.key,
                     overflow: TextOverflow.ellipsis,

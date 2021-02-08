@@ -1,6 +1,6 @@
 import 'package:form_validator/form_validator.dart';
 
-import '../utils/constants.dart';
+import '../utils/error_constants.dart';
 
 extension EmailValidator on ValidationBuilder {
   cEmail() => add(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../config/custom_size.dart';
+import '../config/responsive.dart';
 import '../../home/presentation/home_screen.dart';
 import '../../profile/presentation/profile_screen.dart';
 import '../../timeline/presentation/timeline_screen.dart';
@@ -34,7 +34,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    CustomSize().init(context);
+    Responsive().init(context);
     return DefaultTabController(
       length: _icons.length,
       child: ConnectionSensitiveScreen(

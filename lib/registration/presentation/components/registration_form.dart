@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../../../common/utils/constants.dart';
-import '../../../common/config/custom_size.dart';
+import '../../../common/utils/error_constants.dart';
+import '../../../common/config/responsive.dart';
 import '../../../common/presentation/components/custom_suffix_icon.dart';
 import '../../../common/presentation/components/default_button.dart';
 import '../../../common/helpers/password_validator.dart';

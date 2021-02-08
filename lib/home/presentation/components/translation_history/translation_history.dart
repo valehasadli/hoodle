@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../common/config/custom_size.dart';
-import '../../../../common/utils/constants.dart';
+import '../../../../common/config/responsive.dart';
+import '../../../../common/utils/theme_constants.dart';
 import '../../../../injections.dart';
 import '../../../domain/entities/history_entity.dart';
 import '../../bloc/history/history_bloc.dart';
@@ -31,7 +31,7 @@ class TranslationHistory extends StatelessWidget {
             topRight: Radius.circular(getProportionateScreenWidth(10)),
           ),
         ),
-        height: CustomSize.screenHeight * 0.6,
+        height: Responsive.screenHeight * 0.6,
         width: double.infinity,
         child: BlocConsumer<HistoryBloc, HistoryState>(
           listener: (context, state) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 
-import '../../../common/config/custom_size.dart';
+import '../../../common/config/responsive.dart';
 
 class ConnectionStatusBar extends StatefulWidget {
   @override

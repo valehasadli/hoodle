@@ -9,11 +9,13 @@ import '../../domain/entities/login_entity.dart';
 import '../../../common/platform/internet.dart';
 import '../../domain/interfaces/login_interface.dart';
 import '../../domain/interfaces/logout_interface.dart';
+import '../../domain/interfaces/token_interface.dart';
 import '../data_sources/auth_remote_data_provider.dart';
 import '../data_sources/auth_local_data_provider.dart';
 import '../models/login_model.dart';
 
-class AuthRepository implements LoginInterface, LogoutInterface {
+class AuthRepository
+    implements LoginInterface, LogoutInterface, TokenInterface {
   final Internet internet;
   final AuthRemoteDataProvider authRemoteDataProvider;
   final AuthLocalDataProvider authLocalDataProvider;
@@ -68,7 +70,22 @@ class AuthRepository implements LoginInterface, LogoutInterface {
         final bool logout = await authRemoteDataProvider.logout();
         if (logout) await authLocalDataProvider.cacheLogout();
 
-        return Right(true);
+        return Right(logout);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      throw SocketException('internet connection problem');
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> tokenStatus() async {
+    if (await internet.isConnected) {
+      try {
+        final bool status = await authRemoteDataProvider.tokenStatus();
+
+        return Right(status);
       } on ServerException {
         return Left(ServerFailure());
       }
