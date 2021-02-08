@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../common/errors/exceptions.dart';
 import '../../../common/helpers/double_quote.dart';
-import '../../../common/utils/constants.dart' show kBaseUrl;
+import '../../../common/utils/api_constants.dart' show kBaseUrl;
 import '../models/translation_model.dart';
 
 class TranslationRemoteDataProvider {

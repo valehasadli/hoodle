@@ -9,7 +9,7 @@ import '../../domain/interfaces/history_interface.dart';
 import '../data_sources/history_remote_data_provider.dart';
 import '../data_sources/history_local_data_provider.dart';
 import '../models/history_model.dart';
-import '../models/meta_model.dart';
+import '../../../common/models/meta_model.dart';
 
 class HistoryRepository implements HistoryInterface {
   final Internet internet;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/components/no_account_text.dart';
-import '../../../common/config/custom_size.dart';
+import '../../../common/presentation/components/no_account_text.dart';
+import '../../../common/config/responsive.dart';
 
 import 'forgot_password_form.dart';
 
@@ -23,7 +23,7 @@ class _BodyState extends State<Body> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: CustomSize.screenHeight * 0.08),
+                SizedBox(height: Responsive.screenHeight * 0.08),
                 Text(
                   'Forgot Password',
                   style: TextStyle(
@@ -40,9 +40,9 @@ class _BodyState extends State<Body> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(height: CustomSize.screenHeight * 0.1),
+                SizedBox(height: Responsive.screenHeight * 0.1),
                 ForgotPasswordForm(),
-                SizedBox(height: CustomSize.screenHeight * 0.2),
+                SizedBox(height: Responsive.screenHeight * 0.2),
                 NoAccountText(),
               ],
             ),

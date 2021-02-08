@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 
 // common
 import './common/platform/internet.dart';
+import './common/presentation/bloc/auth/auth_bloc.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 
 // login
@@ -32,8 +33,13 @@ import './home/infrastructure/repositories/translation_repository.dart';
 import './home/application/translation_facade_service.dart';
 import './home/presentation/bloc/translation/translation_bloc.dart';
 
-// home - auth
-import './home/presentation/bloc/auth/auth_bloc.dart';
+// timeline
+
+import './timeline/application/timeline_facade_service.dart';
+import './timeline/infrastructure/data_sources/timeline_local_data_provider.dart';
+import './timeline/infrastructure/data_sources/timeline_remote_data_provider.dart';
+import './timeline/infrastructure/repositories/timeline_repository.dart';
+import './timeline/presentation/bloc/timeline_bloc.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
@@ -43,18 +49,22 @@ Future<void> init() async {
   registrationDependencies();
   homeHistoryDependencies();
   homeTranslationDependencies();
-  homeAuthDependencies();
+  timelineDependencies();
 }
 
 Future<void> commonDependencies() async {
-  // Common - core
+  // Platform Layer
   serviceLocator.registerLazySingleton(
     () => Internet(serviceLocator()),
   );
 
-  // 3rd part packages that needs to be register.
   serviceLocator.registerLazySingleton(
     () => DataConnectionChecker(),
+  );
+
+  // Presentation Layer
+  serviceLocator.registerFactory(
+    () => AuthBloc(),
   );
 }
 
@@ -194,9 +204,36 @@ Future<void> homeTranslationDependencies() async {
   );
 }
 
-Future<void> homeAuthDependencies() async {
+Future<void> timelineDependencies() async {
   // Presentation Layer - Blocs
   serviceLocator.registerFactory(
-    () => AuthBloc(),
+    () => TimelineBloc(
+      service: serviceLocator(),
+    ),
+  );
+
+  // Application Layer - facades
+  serviceLocator.registerLazySingleton(
+    () => TimelineFacadeService(
+      repository: serviceLocator(),
+    ),
+  );
+
+  // Infrastructure Layer - repositories
+  serviceLocator.registerLazySingleton(
+    () => TimelineRepository(
+      internet: serviceLocator(),
+      timelineRemoteDataProvider: serviceLocator(),
+      timelineLocalDataProvider: serviceLocator(),
+    ),
+  );
+
+  // Infrastructure Layer - data source
+  serviceLocator.registerLazySingleton(
+    () => TimelineRemoteDataProvider(),
+  );
+
+  serviceLocator.registerLazySingleton(
+    () => TimelineLocalDataProvider(),
   );
 }

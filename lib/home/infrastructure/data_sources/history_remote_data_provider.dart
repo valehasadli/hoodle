@@ -6,9 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../common/errors/exceptions.dart';
 import '../../../common/helpers/double_quote.dart';
-import '../../../common/utils/constants.dart' show kBaseUrl;
+import '../../../common/utils/api_constants.dart' show kBaseUrl;
 import '../models/history_model.dart';
-import '../models/meta_model.dart';
+import '../../../common/models/meta_model.dart';
 
 class HistoryRemoteDataProvider {
   Future<Map> fetchHistory({@required int page}) async {
