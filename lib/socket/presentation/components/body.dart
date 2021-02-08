@@ -30,6 +30,10 @@ class _BodyState extends State<Body> {
           cluster: 'ap2',
           auth: PusherAuth(
             'https://hoodle-translation-api.herokuapp.com/broadcasting/auth',
+            headers: {
+              'Authorization':
+                  'Bearer 241|1nGiPgYCOPu0DQFxfXah2Uwtjbd4nnmBO6qDJ2Dh',
+            },
           ),
           encrypted: true,
         ),
