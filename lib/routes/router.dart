@@ -11,7 +11,6 @@ import '../login/presentation/login_screen.dart';
 import '../login_success/presentation/login_success_screen.dart';
 import '../profile/presentation/profile_screen.dart';
 import '../timeline/presentation/timeline_screen.dart';
-import '../socket/presentation/socket_screen.dart';
 
 import '../common/utils/route_constants.dart';
 
@@ -60,12 +59,6 @@ import 'guards/guest_guard.dart';
     ),
     CustomRoute<bool>(
       page: HomeScreen,
-      transitionsBuilder: kRouteTransitionBuilder,
-      durationInMilliseconds: kRouteAnimationDuration,
-      guards: [AuthGuard],
-    ),
-    CustomRoute<bool>(
-      page: SocketScreen,
       transitionsBuilder: kRouteTransitionBuilder,
       durationInMilliseconds: kRouteAnimationDuration,
       guards: [AuthGuard],

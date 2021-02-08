@@ -5,7 +5,6 @@ import '../config/responsive.dart';
 import '../../home/presentation/home_screen.dart';
 import '../../profile/presentation/profile_screen.dart';
 import '../../timeline/presentation/timeline_screen.dart';
-import '../../socket/presentation/socket_screen.dart';
 
 import 'connection_sensitive_screen.dart';
 import 'components/custom_tab_bar.dart';
@@ -22,14 +21,12 @@ class _NavigationScreenState extends State<NavigationScreen> {
     HomeScreen(),
     TimelineScreen(),
     ProfileScreen(),
-    SocketScreen(),
   ];
 
   final List<IconData> _icons = [
     Icons.home,
     Icons.timeline,
     MdiIcons.account,
-    MdiIcons.play,
   ];
 
   @override
