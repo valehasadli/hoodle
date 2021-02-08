@@ -1,6 +1,8 @@
+//import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_pusher_client/flutter_pusher.dart';
-import 'package:laravel_echo/laravel_echo.dart';
+//import 'package:laravel_echo/laravel_echo.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -8,7 +10,21 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  Future<void> initPusher() async {
+  List timeline = new List();
+
+  @override
+  void initState() {
+    super.initState();
+    timeline.add("Starting up");
+  }
+
+  void addTimeline(String eventName) {
+    setState(() {
+      timeline.add(eventName);
+    });
+  }
+
+  void initPusher() async {
     final PusherOptions options = PusherOptions(
       auth: PusherAuth(
         'https://hoodle-translation-api.herokuapp.com/broadcasting/auth',
@@ -21,8 +37,9 @@ class _BodyState extends State<Body> {
         onConnectionStateChange: (ConnectionStateChange state) async {
       print('stateChange ${state.toJson()}');
       if (pusher != null && state.currentState == 'CONNECTED') {
-        pusher.subscribe('timeline').bind('timeline.update',
-            (event) => print("Event Kamran" + event.toString()));
+        pusher
+            .subscribe('timeline')
+            .bind('timeline.update', (event) => addTimeline(event.toString()));
 
         // final String socketId = pusher.getSocketId();
         // print(
@@ -40,11 +57,23 @@ class _BodyState extends State<Body> {
         // });
       }
     });
+    //yield pusher;
   }
 
   @override
   Widget build(BuildContext context) {
     initPusher();
+    return Container(
+      color: Colors.red,
+      child: ListView.builder(
+        itemCount: timeline.length,
+        itemBuilder: (BuildContext ctxt, int index) {
+          return new ListTile(
+            title: Text(timeline[index].toString()),
+          );
+        },
+      ),
+    );
     // PusherOptions options = PusherOptions(
     //   encrypted: false,
     //   host: 'https://hoodle-translation-api.herokuapp.com',
@@ -90,10 +119,10 @@ class _BodyState extends State<Body> {
     //     print(event);
     //   });
 
-    return Container(
-      child: Center(
-        child: Text('socket'),
-      ),
-    );
+    // return Container(
+    //   child: Center(
+    //     child: Text('socket'),
+    //   ),
+    // );
   }
 }
