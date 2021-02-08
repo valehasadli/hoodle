@@ -1,8 +1,7 @@
-//import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_pusher_client/flutter_pusher.dart';
-//import 'package:laravel_echo/laravel_echo.dart';
+
+import 'package:flutter/services.dart';
+import 'package:pusher_websocket_flutter/pusher.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -10,119 +9,198 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  List timeline = new List();
+  Event lastEvent;
+  String lastConnectionState;
+  Channel channel;
+
+  var channelController = TextEditingController(text: 'timeline');
+  var eventController = TextEditingController(text: 'timeline.update');
 
   @override
   void initState() {
     super.initState();
-    timeline.add("Starting up");
+    initPusher();
   }
 
-  void addTimeline(String eventName) {
-    setState(() {
-      timeline.add(eventName);
-    });
-  }
-
-  void initPusher() async {
-    final PusherOptions options = PusherOptions(
-      auth: PusherAuth(
-        'https://hoodle-translation-api.herokuapp.com/broadcasting/auth',
-      ),
-      encrypted: true,
-      cluster: 'ap2',
-    );
-    FlutterPusher pusher;
-    pusher = FlutterPusher('7d4b069089528dc40d73', options, enableLogging: true,
-        onConnectionStateChange: (ConnectionStateChange state) async {
-      print('stateChange ${state.toJson()}');
-      if (pusher != null && state.currentState == 'CONNECTED') {
-        pusher
-            .subscribe('timeline')
-            .bind('timeline.update', (event) => addTimeline(event.toString()));
-
-        // final String socketId = pusher.getSocketId();
-        // print(
-        //   'pusher socket id: $socketId',
-        // ); // Laravel echo will subscribe the channel with full namespace.
-        // // Ex: App\Events
-        // final Echo echo = Echo(<String, dynamic>{
-        //   'broadcaster': 'pusher',
-        //   'client': pusher,
-        // });
-        // echo.channel('timeline').listen('timeline.update', (event) {
-        //   print('event: $event');
-        //   // final Message msg = Message.fromJson(message);
-        //   // messages.add(msg);
-        // });
-      }
-    });
-    //yield pusher;
+  Future<void> initPusher() async {
+    try {
+      await Pusher.init(
+        '7d4b069089528dc40d73',
+        PusherOptions(
+          cluster: 'ap2',
+          auth: PusherAuth(
+            'https://hoodle-translation-api.herokuapp.com/broadcasting/auth',
+          ),
+          encrypted: true,
+        ),
+        enableLogging: true,
+      );
+    } on PlatformException catch (e) {
+      print(e.message);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    initPusher();
-    return Container(
-      color: Colors.red,
-      child: ListView.builder(
-        itemCount: timeline.length,
-        itemBuilder: (BuildContext ctxt, int index) {
-          return new ListTile(
-            title: Text(timeline[index].toString()),
-          );
-        },
-      ),
+    return MaterialApp(
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Plugin example app'),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _buildInfo(),
+                RaisedButton(
+                  child: Text("Connect"),
+                  onPressed: () {
+                    Pusher.connect(onConnectionStateChange: (x) async {
+                      if (mounted)
+                        setState(() {
+                          lastConnectionState = x.currentState;
+                        });
+                    }, onError: (x) {
+                      debugPrint("Error: ${x.message}");
+                    });
+                  },
+                ),
+                RaisedButton(
+                  child: Text("Disconnect"),
+                  onPressed: () {
+                    Pusher.disconnect();
+                  },
+                ),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      width: 200,
+                      child: TextField(
+                        controller: channelController,
+                        decoration: InputDecoration(hintText: "Channel"),
+                      ),
+                    ),
+                    RaisedButton(
+                      child: Text("Subscribe"),
+                      onPressed: () async {
+                        channel =
+                            await Pusher.subscribe(channelController.text);
+                      },
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      width: 200,
+                      child: TextField(
+                        controller: channelController,
+                        decoration: InputDecoration(hintText: "Channel"),
+                      ),
+                    ),
+                    RaisedButton(
+                      child: Text("Unsubscribe"),
+                      onPressed: () async {
+                        await Pusher.unsubscribe(channelController.text);
+                        channel = null;
+                      },
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      width: 200,
+                      child: TextField(
+                        controller: eventController,
+                        decoration: InputDecoration(hintText: "Event"),
+                      ),
+                    ),
+                    RaisedButton(
+                      child: Text("Bind"),
+                      onPressed: () async {
+                        await channel.bind(eventController.text, (x) {
+                          if (mounted)
+                            setState(() {
+                              lastEvent = x;
+                            });
+                        });
+                      },
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      width: 200,
+                      child: TextField(
+                        controller: eventController,
+                        decoration: InputDecoration(hintText: "Event"),
+                      ),
+                    ),
+                    RaisedButton(
+                      child: Text("Unbind"),
+                      onPressed: () async {
+                        await channel.unbind(eventController.text);
+                      },
+                    )
+                  ],
+                ),
+              ],
+            ),
+          )),
     );
-    // PusherOptions options = PusherOptions(
-    //   encrypted: false,
-    //   host: 'https://hoodle-translation-api.herokuapp.com',
-    //   cluster: 'ap2',
-    //   port: 6001,
-    //   auth: PusherAuth(
-    //     'https://hoodle-translation-api.herokuapp.com/broadcasting/auth',
-    //     headers: {
-    //       'Authorization': 'Bearer 181|tBt2BYwxmYy8WpCCpfD7FWotw5qaYtS41e5xRjEa'
-    //     },
-    //   ),
-    // );
-    //
-    // FlutterPusher pusher = FlutterPusher(
-    //   '7d4b069089528dc40d73',
-    //   options,
-    //   enableLogging: true,
-    //   onError: (val) => print("Pusher error: ${val.exception}"),
-    //   onConnectionStateChange: (val) =>
-    //       print('Pusher state: ${val.currentState}'),
-    // );
-    //
-    // Echo echo = new Echo({
-    //   'broadcaster': 'pusher',
-    //   'client': pusher,
-    //   'wsHost': 'https://hoodle-translation-api.herokuapp.com',
-    //   'httpHost': 'https://hoodle-translation-api.herokuapp.com',
-    //   'wsPort': 6001,
-    //   'auth': {
-    //     'headers': {
-    //       'Authorization': 'Bearer 181|tBt2BYwxmYy8WpCCpfD7FWotw5qaYtS41e5xRjEa'
-    //     }
-    //   },
-    //   'authEndpoint':
-    //       'https://hoodle-translation-api.herokuapp.com/broadcasting/auth',
-    //   'disableStats': true,
-    //   'forceTLS': false,
-    //   'enabledTransports': ['ws', 'wss']
-    // });
-    //
-    // echo.join('timeline')
-    //   ..listen('timeline.update', (event) {
-    //     print(event);
-    //   });
+  }
 
-    // return Container(
-    //   child: Center(
-    //     child: Text('socket'),
-    //   ),
-    // );
+  Widget _buildInfo() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "Connection State: ",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text(lastConnectionState ?? "Unknown"),
+          ],
+        ),
+        SizedBox(height: 8),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "Last Event Channel: ",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text(lastEvent?.channel ?? ""),
+          ],
+        ),
+        SizedBox(height: 8),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "Last Event Name: ",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text(lastEvent?.event ?? ""),
+          ],
+        ),
+        SizedBox(height: 8),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "Last Event Data: ",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text(lastEvent?.data ?? ""),
+          ],
+        ),
+      ],
+    );
   }
 }
