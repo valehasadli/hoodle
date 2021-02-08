@@ -31,7 +31,7 @@ class _BodyState extends State<Body> {
           'client': pusher,
         });
         echo.channel('timeline').listen('timeline.update', (event) {
-          print(event);
+          print('event: $event');
           // final Message msg = Message.fromJson(message);
           // messages.add(msg);
         });
