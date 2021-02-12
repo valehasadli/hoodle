@@ -78,7 +78,7 @@ class AppRouter extends RouterBase {
       return PageRouteBuilder<bool>(
         pageBuilder: (context, animation, secondaryAnimation) => SplashScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         transitionDuration: const Duration(milliseconds: 200),
       );
     },
@@ -86,7 +86,7 @@ class AppRouter extends RouterBase {
       return PageRouteBuilder<bool>(
         pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         transitionDuration: const Duration(milliseconds: 200),
       );
     },
@@ -95,7 +95,7 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             CompleteProfileScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         transitionDuration: const Duration(milliseconds: 200),
       );
     },
@@ -104,7 +104,7 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             RegistrationScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         transitionDuration: const Duration(milliseconds: 200),
       );
     },
@@ -113,7 +113,7 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             ForgotPasswordScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         transitionDuration: const Duration(milliseconds: 200),
       );
     },
@@ -122,7 +122,7 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             LoginSuccessScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         transitionDuration: const Duration(milliseconds: 200),
       );
     },
@@ -130,7 +130,7 @@ class AppRouter extends RouterBase {
       return PageRouteBuilder<bool>(
         pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         transitionDuration: const Duration(milliseconds: 200),
       );
     },
@@ -138,7 +138,7 @@ class AppRouter extends RouterBase {
       return PageRouteBuilder<bool>(
         pageBuilder: (context, animation, secondaryAnimation) => SocketScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         transitionDuration: const Duration(milliseconds: 200),
       );
     },
@@ -147,7 +147,7 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             ProfileScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         transitionDuration: const Duration(milliseconds: 200),
       );
     },
@@ -156,7 +156,7 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             TimelineScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         transitionDuration: const Duration(milliseconds: 200),
       );
     },
@@ -165,7 +165,7 @@ class AppRouter extends RouterBase {
         pageBuilder: (context, animation, secondaryAnimation) =>
             NavigationScreen(),
         settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
         transitionDuration: const Duration(milliseconds: 200),
       );
     },

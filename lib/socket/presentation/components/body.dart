@@ -29,10 +29,10 @@ class _BodyState extends State<Body> {
         PusherOptions(
           cluster: 'ap2',
           auth: PusherAuth(
-            'https://hoodle-translation-api.herokuapp.com/broadcasting/auth',
+            'http://192.168.31.218:8000/broadcasting/auth',
             headers: {
               'Authorization':
-                  'Bearer 241|1nGiPgYCOPu0DQFxfXah2Uwtjbd4nnmBO6qDJ2Dh',
+                  'Bearer 2|lVKaF8w9iBlS2rxjyiQjHl8lwOrxvK02e8iD1qky',
             },
           ),
           encrypted: true,
@@ -40,7 +40,7 @@ class _BodyState extends State<Body> {
         enableLogging: true,
       );
     } on PlatformException catch (e) {
-      print(e.message);
+      print(e.message.toString());
     }
   }
 
@@ -48,112 +48,112 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('Plugin example app'),
+        appBar: AppBar(
+          title: Text('Plugin example app'),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _buildInfo(),
+              RaisedButton(
+                child: Text("Connect"),
+                onPressed: () {
+                  Pusher.connect(onConnectionStateChange: (x) async {
+                    if (mounted)
+                      setState(() {
+                        lastConnectionState = x.currentState;
+                      });
+                  }, onError: (x) {
+                    debugPrint("Error: ${x.message}");
+                  });
+                },
+              ),
+              RaisedButton(
+                child: Text("Disconnect"),
+                onPressed: () {
+                  Pusher.disconnect();
+                },
+              ),
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: 200,
+                    child: TextField(
+                      controller: channelController,
+                      decoration: InputDecoration(hintText: "Channel"),
+                    ),
+                  ),
+                  RaisedButton(
+                    child: Text("Subscribe"),
+                    onPressed: () async {
+                      channel = await Pusher.subscribe(channelController.text);
+                    },
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: 200,
+                    child: TextField(
+                      controller: channelController,
+                      decoration: InputDecoration(hintText: "Channel"),
+                    ),
+                  ),
+                  RaisedButton(
+                    child: Text("Unsubscribe"),
+                    onPressed: () async {
+                      await Pusher.unsubscribe(channelController.text);
+                      channel = null;
+                    },
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: 200,
+                    child: TextField(
+                      controller: eventController,
+                      decoration: InputDecoration(hintText: "Event"),
+                    ),
+                  ),
+                  RaisedButton(
+                    child: Text("Bind"),
+                    onPressed: () async {
+                      await channel.bind(eventController.text, (x) {
+                        if (mounted)
+                          setState(() {
+                            lastEvent = x;
+                          });
+                      });
+                    },
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: 200,
+                    child: TextField(
+                      controller: eventController,
+                      decoration: InputDecoration(hintText: "Event"),
+                    ),
+                  ),
+                  RaisedButton(
+                    child: Text("Unbind"),
+                    onPressed: () async {
+                      await channel.unbind(eventController.text);
+                    },
+                  )
+                ],
+              ),
+            ],
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _buildInfo(),
-                RaisedButton(
-                  child: Text("Connect"),
-                  onPressed: () {
-                    Pusher.connect(onConnectionStateChange: (x) async {
-                      if (mounted)
-                        setState(() {
-                          lastConnectionState = x.currentState;
-                        });
-                    }, onError: (x) {
-                      debugPrint("Error: ${x.message}");
-                    });
-                  },
-                ),
-                RaisedButton(
-                  child: Text("Disconnect"),
-                  onPressed: () {
-                    Pusher.disconnect();
-                  },
-                ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      width: 200,
-                      child: TextField(
-                        controller: channelController,
-                        decoration: InputDecoration(hintText: "Channel"),
-                      ),
-                    ),
-                    RaisedButton(
-                      child: Text("Subscribe"),
-                      onPressed: () async {
-                        channel =
-                            await Pusher.subscribe(channelController.text);
-                      },
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      width: 200,
-                      child: TextField(
-                        controller: channelController,
-                        decoration: InputDecoration(hintText: "Channel"),
-                      ),
-                    ),
-                    RaisedButton(
-                      child: Text("Unsubscribe"),
-                      onPressed: () async {
-                        await Pusher.unsubscribe(channelController.text);
-                        channel = null;
-                      },
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      width: 200,
-                      child: TextField(
-                        controller: eventController,
-                        decoration: InputDecoration(hintText: "Event"),
-                      ),
-                    ),
-                    RaisedButton(
-                      child: Text("Bind"),
-                      onPressed: () async {
-                        await channel.bind(eventController.text, (x) {
-                          if (mounted)
-                            setState(() {
-                              lastEvent = x;
-                            });
-                        });
-                      },
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      width: 200,
-                      child: TextField(
-                        controller: eventController,
-                        decoration: InputDecoration(hintText: "Event"),
-                      ),
-                    ),
-                    RaisedButton(
-                      child: Text("Unbind"),
-                      onPressed: () async {
-                        await channel.unbind(eventController.text);
-                      },
-                    )
-                  ],
-                ),
-              ],
-            ),
-          )),
+        ),
+      ),
     );
   }
 
