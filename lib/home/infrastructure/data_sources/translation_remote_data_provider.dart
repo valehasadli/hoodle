@@ -1,12 +1,10 @@
-import 'dart:io';
 import 'dart:convert';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../common/errors/exceptions.dart';
-import '../../../common/helpers/double_quote.dart';
-import '../../../common/utils/api_constants.dart' show kBaseUrl;
+import '../../../common/utils/api_constants.dart';
 import '../models/translation_model.dart';
 
 class TranslationRemoteDataProvider {
@@ -15,16 +13,12 @@ class TranslationRemoteDataProvider {
     @required String keyLanguageLocale,
     @required String valueLanguageLocale,
   }) async {
-    final String url = '$kBaseUrl/mobile/translations';
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    final String token = DoubleQuote.trim(preferences.getString('token'));
+    final String url = '$kBaseUrl/api/mobile/translations';
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final http.Response response = await http.post(
       url,
-      headers: <String, String>{
-        HttpHeaders.authorizationHeader: 'Bearer $token',
-        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-      },
+      headers: kAuthRequestHeaders(rawToken: prefs.getString('token')),
       body: jsonEncode(<String, String>{
         'key': key,
         'key_language_locale': keyLanguageLocale,

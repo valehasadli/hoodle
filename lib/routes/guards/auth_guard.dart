@@ -11,7 +11,7 @@ class AuthGuard extends RouteGuard {
     Object arguments,
   ) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
+    print(prefs.get('token'));
     if (prefs.getString('token') != null) {
       return true;
     }
