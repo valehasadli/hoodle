@@ -44,7 +44,7 @@ android {
 
     defaultConfig {
         applicationId "app.hoodle.hoodle"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
