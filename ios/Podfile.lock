@@ -1,46 +1,29 @@
 PODS:
-  - CryptoSwift (0.15.0)
   - Flutter (1.0.0)
-  - flutter_pusher_client (0.3.1):
-    - Flutter
-    - PusherSwift (~> 7.2)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - path_provider (0.0.1):
     - Flutter
-  - PusherSwift (7.2.0):
-    - CryptoSwift (~> 0.9)
-    - ReachabilitySwift (= 4.3.0)
-    - Starscream (~> 3.0.5)
-  - ReachabilitySwift (4.3.0)
   - shared_preferences (0.0.1):
     - Flutter
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
-  - Starscream (3.0.6)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - flutter_pusher_client (from `.symlinks/plugins/flutter_pusher_client/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
 
 SPEC REPOS:
   trunk:
-    - CryptoSwift
     - FMDB
-    - PusherSwift
-    - ReachabilitySwift
-    - Starscream
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  flutter_pusher_client:
-    :path: ".symlinks/plugins/flutter_pusher_client/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   shared_preferences:
@@ -49,16 +32,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
-  CryptoSwift: 769f58a9e89f64e8796c2e59ce5f002dc81a2438
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_pusher_client: c882bc29ad7af3e2d47b2c175b8252ab2ce7e9c6
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
-  PusherSwift: a5369a01e8a9106b4897e9186265af1426726062
-  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
-  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 

@@ -17,7 +17,6 @@ import '../login/presentation/login_screen.dart';
 import '../login_success/presentation/login_success_screen.dart';
 import '../profile/presentation/profile_screen.dart';
 import '../registration/presentation/registration_screen.dart';
-import '../socket/presentation/socket_screen.dart';
 import '../splash/presentation/splash_screen.dart';
 import '../timeline/presentation/timeline_screen.dart';
 import 'guards/auth_guard.dart';
@@ -31,7 +30,6 @@ class Routes {
   static const String forgotPasswordScreen = '/forgot-password-screen';
   static const String loginSuccessScreen = '/login-success-screen';
   static const String homeScreen = '/home-screen';
-  static const String socketScreen = '/socket-screen';
   static const String profileScreen = '/profile-screen';
   static const String timelineScreen = '/timeline-screen';
   static const String navigationScreen = '/navigation-screen';
@@ -43,7 +41,6 @@ class Routes {
     forgotPasswordScreen,
     loginSuccessScreen,
     homeScreen,
-    socketScreen,
     profileScreen,
     timelineScreen,
     navigationScreen,
@@ -65,7 +62,6 @@ class AppRouter extends RouterBase {
     RouteDef(Routes.loginSuccessScreen,
         page: LoginSuccessScreen, guards: [AuthGuard]),
     RouteDef(Routes.homeScreen, page: HomeScreen, guards: [AuthGuard]),
-    RouteDef(Routes.socketScreen, page: SocketScreen, guards: [AuthGuard]),
     RouteDef(Routes.profileScreen, page: ProfileScreen, guards: [AuthGuard]),
     RouteDef(Routes.timelineScreen, page: TimelineScreen, guards: [AuthGuard]),
     RouteDef(Routes.navigationScreen,
@@ -134,14 +130,6 @@ class AppRouter extends RouterBase {
         transitionDuration: const Duration(milliseconds: 200),
       );
     },
-    SocketScreen: (data) {
-      return PageRouteBuilder<bool>(
-        pageBuilder: (context, animation, secondaryAnimation) => SocketScreen(),
-        settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-        transitionDuration: const Duration(milliseconds: 200),
-      );
-    },
     ProfileScreen: (data) {
       return PageRouteBuilder<bool>(
         pageBuilder: (context, animation, secondaryAnimation) =>
@@ -194,8 +182,6 @@ extension AppRouterExtendedNavigatorStateX on ExtendedNavigatorState {
       push<bool>(Routes.loginSuccessScreen);
 
   Future<bool> pushHomeScreen() => push<bool>(Routes.homeScreen);
-
-  Future<bool> pushSocketScreen() => push<bool>(Routes.socketScreen);
 
   Future<bool> pushProfileScreen() => push<bool>(Routes.profileScreen);
 
