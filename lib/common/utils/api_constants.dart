@@ -1,19 +1,25 @@
 import 'dart:io';
 import 'package:meta/meta.dart';
 
-const String kBaseUrl = 'https://hoodle-translation-api.herokuapp.com/api';
+import '../helpers/double_quote.dart';
 
-Map<String, String> kAuthRequestHeaders({@required String token}) {
-  return {
-    HttpHeaders.contentTypeHeader: 'application/json',
+const String kBaseUrl = 'https://hoodle-translation-api.herokuapp.com';
+
+Map<String, String> kAuthRequestHeaders({
+  @required String rawToken,
+}) {
+  final String token = DoubleQuote.trim(rawToken);
+
+  return <String, String>{
+    HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
     HttpHeaders.acceptHeader: 'application/json',
     HttpHeaders.authorizationHeader: 'Bearer $token'
   };
 }
 
 Map<String, String> kGuestRequestHeaders() {
-  return {
-    HttpHeaders.contentTypeHeader: 'application/json',
+  return <String, String>{
+    HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
     HttpHeaders.acceptHeader: 'application/json',
   };
 }
