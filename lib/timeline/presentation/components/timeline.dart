@@ -13,7 +13,7 @@ class Timeline extends StatelessWidget {
   Widget build(BuildContext context) {
     Query query = FirebaseFirestore.instance
         .collection('timeline')
-        .limit(5)
+        .limit(10)
         .orderBy('created_at', descending: true);
 
     return StreamBuilder<QuerySnapshot>(
