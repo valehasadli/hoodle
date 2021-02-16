@@ -15,7 +15,7 @@ class Body extends StatelessWidget {
           AuthAppBar(),
           SliverToBoxAdapter(
             child: Timeline(),
-          )
+          ),
         ],
       ),
     );
