@@ -3,8 +3,7 @@ import 'package:meta/meta.dart';
 
 import '../helpers/double_quote.dart';
 
-// const String kBaseUrl = 'https://hoodle-translation-api.herokuapp.com';
-const String kBaseUrl = 'http://localhost:8000';
+const String kBaseUrl = 'https://hoodle-translation-api.herokuapp.com';
 
 Map<String, String> kAuthRequestHeaders({
   @required String rawToken,
