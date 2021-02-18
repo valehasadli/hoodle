@@ -1,19 +1,20 @@
 part of '../timeline.dart';
 
 class Success extends StatelessWidget {
-  final List<TimelineEntity> timeline;
+  final QuerySnapshot querySnapshot;
 
-  Success({
+  const Success({
     Key key,
-    @required this.timeline,
+    @required this.querySnapshot,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: timeline.length,
+      shrinkWrap: true,
+      itemCount: querySnapshot.size,
       itemBuilder: (_, index) {
-        return ItemCard(timeline: timeline[index]);
+        return ItemCard(documentSnapshot: querySnapshot.docs[index]);
       },
     );
   }

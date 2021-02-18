@@ -1,12 +1,16 @@
 part of '../timeline.dart';
 
 class ItemCard extends StatelessWidget {
-  final TimelineEntity timeline;
+  final DocumentSnapshot documentSnapshot;
 
   const ItemCard({
     Key key,
-    @required this.timeline,
+    @required this.documentSnapshot,
   }) : super(key: key);
+
+  Map<String, dynamic> get timeline {
+    return documentSnapshot.data();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,7 @@ class ItemCard extends StatelessWidget {
           ),
         ),
       ),
-      child: Text(timeline.message),
+      child: Text(timeline['message']),
     );
   }
 }

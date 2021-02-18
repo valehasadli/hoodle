@@ -33,14 +33,6 @@ import './home/infrastructure/repositories/translation_repository.dart';
 import './home/application/translation_facade_service.dart';
 import './home/presentation/bloc/translation/translation_bloc.dart';
 
-// timeline
-
-import './timeline/application/timeline_facade_service.dart';
-import './timeline/infrastructure/data_sources/timeline_local_data_provider.dart';
-import './timeline/infrastructure/data_sources/timeline_remote_data_provider.dart';
-import './timeline/infrastructure/repositories/timeline_repository.dart';
-import './timeline/presentation/bloc/timeline_bloc.dart';
-
 final GetIt serviceLocator = GetIt.instance;
 
 Future<void> init() async {
@@ -49,7 +41,6 @@ Future<void> init() async {
   registrationDependencies();
   homeHistoryDependencies();
   homeTranslationDependencies();
-  timelineDependencies();
 }
 
 Future<void> commonDependencies() async {
@@ -201,39 +192,5 @@ Future<void> homeTranslationDependencies() async {
 
   serviceLocator.registerLazySingleton(
     () => TranslationLocalDataProvider(),
-  );
-}
-
-Future<void> timelineDependencies() async {
-  // Presentation Layer - Blocs
-  serviceLocator.registerFactory(
-    () => TimelineBloc(
-      service: serviceLocator(),
-    ),
-  );
-
-  // Application Layer - facades
-  serviceLocator.registerLazySingleton(
-    () => TimelineFacadeService(
-      repository: serviceLocator(),
-    ),
-  );
-
-  // Infrastructure Layer - repositories
-  serviceLocator.registerLazySingleton(
-    () => TimelineRepository(
-      internet: serviceLocator(),
-      timelineRemoteDataProvider: serviceLocator(),
-      timelineLocalDataProvider: serviceLocator(),
-    ),
-  );
-
-  // Infrastructure Layer - data source
-  serviceLocator.registerLazySingleton(
-    () => TimelineRemoteDataProvider(),
-  );
-
-  serviceLocator.registerLazySingleton(
-    () => TimelineLocalDataProvider(),
   );
 }
