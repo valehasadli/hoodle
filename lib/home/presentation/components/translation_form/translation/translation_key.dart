@@ -11,7 +11,7 @@ class TranslationKey extends StatelessWidget {
       child: BlocBuilder<TranslationBloc, TranslationState>(
         builder: (context, state) {
           return Stack(
-            overflow: Overflow.visible,
+            clipBehavior: Clip.none,
             children: [
               Padding(
                 padding: EdgeInsets.only(
