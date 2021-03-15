@@ -47,9 +47,13 @@ class _DefaultButtonState extends State<DefaultButton> {
     return SizedBox(
       width: double.infinity,
       height: getProportionateScreenHeight(56),
-      child: FlatButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: widget.color,
+          onSurface: kPrimaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
         ),
         onPressed: widget.ready && _isConnected ? widget.press : null,
         child: widget.loading
@@ -64,8 +68,6 @@ class _DefaultButtonState extends State<DefaultButton> {
                   fontSize: getProportionateScreenWidth(18),
                 ),
               ),
-        color: widget.color,
-        disabledColor: kSecondaryColor,
       ),
     );
   }
