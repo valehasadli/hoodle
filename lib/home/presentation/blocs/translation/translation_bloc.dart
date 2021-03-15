@@ -55,6 +55,8 @@ class TranslationBloc extends Bloc<TranslationEvent, TranslationState> {
       yield _mapResettedToState(event, state);
     } else if (event is TranslationKeyChanged) {
       yield _mapKeyChangedToState(event, state);
+    } else if (event is TranslationAddHistory) {
+      yield* _mapAddHistoryToState(event, state);
     } else if (event is TranslationSubmitted) {
       if (state.key.length > 1) {
         yield* _mapSubmittedToState(event, state);
@@ -111,6 +113,31 @@ class TranslationBloc extends Bloc<TranslationEvent, TranslationState> {
       value: '',
       status: TranslationStatus.pure,
     );
+  }
+
+  Stream<TranslationState> _mapAddHistoryToState(
+    TranslationAddHistory event,
+    TranslationState state,
+  ) async* {
+    yield state.copyWith(status: TranslationStatus.progress);
+
+    final Either<Failure, TranslationEntity> failureOrAddHistory =
+        await service.addHistory(id: state.id);
+
+    yield failureOrAddHistory.fold(
+        (failure) => state.copyWith(status: TranslationStatus.failure),
+        (translation) => state.copyWith(
+              id: translation.id,
+              userId: translation.userId,
+              key: translation.key,
+              keyLanguageLocale: translation.keyLanguageLocale,
+              value: translation.value,
+              valueLanguageLocale: translation.valueLanguageLocale,
+              count: translation.count,
+              favorite: translation.favorite,
+              history: translation.history,
+              status: TranslationStatus.success,
+            ));
   }
 
   Stream<TranslationState> _mapSubmittedToState(

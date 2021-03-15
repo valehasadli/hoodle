@@ -54,3 +54,7 @@ class TranslationResetted extends TranslationEvent {
 class TranslationSubmitted extends TranslationEvent {
   const TranslationSubmitted();
 }
+
+class TranslationAddHistory extends TranslationEvent {
+  const TranslationAddHistory();
+}

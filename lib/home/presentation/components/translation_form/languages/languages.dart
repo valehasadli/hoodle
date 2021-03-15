@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../common/utils/theme_constants.dart';
 
-import '../../../bloc/translation/translation_bloc.dart';
+import '../../../blocs/translation/translation_bloc.dart';
 
 part 'key_language_button.dart';
 part 'value_language_button.dart';

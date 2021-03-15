@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:meta/meta.dart';
 import 'package:dartz/dartz.dart';
 
@@ -5,12 +7,13 @@ import '../../../common/errors/failures.dart';
 import '../../../common/errors/exceptions.dart';
 import '../../../common/platforms/internet.dart';
 import '../../domain/entities/translation_entity.dart';
-import '../../domain/interfaces/translation_interface.dart';
+import '../../domain/interfaces/translation/translate_interface.dart';
+import '../../domain/interfaces/translation/add_history_interface.dart';
 import '../data_sources/translation_remote_data_provider.dart';
 import '../data_sources/translation_local_data_provider.dart';
 import '../models/translation_model.dart';
 
-class TranslationRepository implements TranslationInterface {
+class TranslationRepository implements TranslateInterface, AddHistoryInterface {
   final Internet internet;
   final TranslationRemoteDataProvider translationRemoteDataProvider;
   final TranslationLocalDataProvider translationLocalDataProvider;
@@ -54,6 +57,26 @@ class TranslationRepository implements TranslationInterface {
       } on CacheException {
         return Left(CacheFailure());
       }
+    }
+  }
+
+  @override
+  Future<Either<Failure, TranslationEntity>> addHistory({
+    @required int id,
+  }) async {
+    if (await internet.isConnected) {
+      try {
+        final TranslationModel model =
+            await translationRemoteDataProvider.addHistory(id: id);
+
+        final TranslationEntity translation = _entity(model: model);
+
+        return Right(translation);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      throw SocketException('internet connection problem');
     }
   }
 

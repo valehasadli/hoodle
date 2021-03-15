@@ -10,6 +10,7 @@ class TranslationKey extends StatelessWidget {
       ),
       child: BlocBuilder<TranslationBloc, TranslationState>(
         builder: (context, state) {
+          print(state.status);
           return Stack(
             clipBehavior: Clip.none,
             children: [
@@ -51,7 +52,22 @@ class TranslationKey extends StatelessWidget {
                         .read<TranslationBloc>()
                         .add(TranslationResetted()),
                     child: Icon(
-                      Icons.highlight_remove_outlined,
+                      Icons.highlight_remove,
+                      color: kPrimaryColor,
+                      size: getProportionateScreenWidth(25),
+                    ),
+                  ),
+                ),
+              if (state.status == TranslationStatus.success)
+                Positioned(
+                  top: -10,
+                  right: 25,
+                  child: GestureDetector(
+                    onTap: () => context
+                        .read<TranslationBloc>()
+                        .add(TranslationAddHistory()),
+                    child: Icon(
+                      Icons.arrow_forward_outlined,
                       color: kPrimaryColor,
                       size: getProportionateScreenWidth(25),
                     ),

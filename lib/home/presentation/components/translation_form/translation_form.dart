@@ -6,7 +6,7 @@ import '../../../../injections.dart';
 import '../../../../common/configs/responsive.dart';
 import '../../../../common/utils/theme_constants.dart';
 
-import '../../bloc/translation/translation_bloc.dart';
+import '../../blocs/translation/translation_bloc.dart';
 
 import 'languages/languages.dart';
 import 'translation/translation.dart';

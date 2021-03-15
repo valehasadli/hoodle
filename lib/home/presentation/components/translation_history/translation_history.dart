@@ -8,7 +8,7 @@ import '../../../../common/configs/responsive.dart';
 import '../../../../common/utils/theme_constants.dart';
 import '../../../../injections.dart';
 import '../../../domain/entities/history_entity.dart';
-import '../../bloc/history/history_bloc.dart';
+import '../../blocs/history/history_bloc.dart';
 
 part 'history.dart';
 part 'history_card.dart';

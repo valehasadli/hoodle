@@ -24,14 +24,14 @@ import './home/infrastructure/data_sources/history_remote_data_provider.dart';
 import './home/infrastructure/data_sources/history_local_data_provider.dart';
 import './home/infrastructure/repositories/history_repository.dart';
 import './home/application/history_facade_service.dart';
-import './home/presentation/bloc/history/history_bloc.dart';
+import './home/presentation/blocs/history/history_bloc.dart';
 
 // home - translation
 import './home/infrastructure/data_sources/translation_remote_data_provider.dart';
 import './home/infrastructure/data_sources/translation_local_data_provider.dart';
 import './home/infrastructure/repositories/translation_repository.dart';
 import './home/application/translation_facade_service.dart';
-import './home/presentation/bloc/translation/translation_bloc.dart';
+import './home/presentation/blocs/translation/translation_bloc.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 

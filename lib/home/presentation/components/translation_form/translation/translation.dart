@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../common/utils/theme_constants.dart';
 import '../../../../../common/configs/responsive.dart';
 
-import '../../../bloc/translation/translation_bloc.dart';
+import '../../../blocs/translation/translation_bloc.dart';
 
 part 'translation_key.dart';
 part 'translation_divider.dart';
