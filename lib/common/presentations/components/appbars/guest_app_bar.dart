@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../../config/responsive.dart';
-
-import 'rounded_icon_button.dart';
+import '../../../configs/responsive.dart';
+import '../rounded_icon_button.dart';
 
 class GuestAppBar extends PreferredSize {
   @override

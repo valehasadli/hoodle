@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../common/config/responsive.dart';
-import '../../common/presentation/components/guest_app_bar.dart';
+import '../../common/configs/responsive.dart';
+import '../../common/presentations/components/appbars/guest_app_bar.dart';
 
 import 'components/body.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../common/config/responsive.dart';
+import '../../common/configs/responsive.dart';
 
 import 'components/body.dart';
 

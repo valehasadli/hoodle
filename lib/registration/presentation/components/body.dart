@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/config/responsive.dart';
+import '../../../common/configs/responsive.dart';
 import '../../../common/utils/theme_constants.dart';
 
-import '../../../common/presentation/components/social_card.dart';
-import '../../../common/presentation/components/term_and_condition_text.dart';
+import '../../../common/presentations/components/social_card.dart';
+import '../../../common/presentations/components/term_and_condition_text.dart';
 
 import 'registration_form.dart';
 

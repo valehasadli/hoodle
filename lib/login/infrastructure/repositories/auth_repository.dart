@@ -6,7 +6,7 @@ import '../../../common/errors/failures.dart';
 import '../../../common/errors/exceptions.dart';
 
 import '../../domain/entities/login_entity.dart';
-import '../../../common/platform/internet.dart';
+import '../../../common/platforms/internet.dart';
 import '../../domain/interfaces/login_interface.dart';
 import '../../domain/interfaces/logout_interface.dart';
 import '../../domain/interfaces/token_interface.dart';

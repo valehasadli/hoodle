@@ -5,14 +5,14 @@ import 'package:form_validator/form_validator.dart';
 
 import '../../../common/utils/error_constants.dart';
 import '../../../common/utils/theme_constants.dart';
-import '../../../common/config/responsive.dart';
-import '../../../common/presentation/components/default_button.dart';
-import '../../../common/presentation/components/custom_suffix_icon.dart';
+import '../../../common/configs/responsive.dart';
+import '../../../common/presentations/components/default_button.dart';
+import '../../../common/presentations/components/custom_suffix_icon.dart';
 import '../../../common/helpers/email_validator.dart';
 import '../../../common/helpers/password_validator.dart';
 
 import '../bloc/login_bloc.dart';
-import '../../../routes/router.gr.dart';
+import '../../../common/routes/router.gr.dart';
 
 import 'forgot_password.dart';
 
@@ -41,7 +41,7 @@ class _LoginFormState extends State<LoginForm> {
         }
 
         if (state.status == LoginStatus.failure) {
-          Scaffold.of(context)
+          ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
               const SnackBar(

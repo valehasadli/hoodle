@@ -10,12 +10,13 @@ import '../../../common/models/meta_model.dart';
 
 class HistoryRemoteDataProvider {
   Future<Map> fetchHistory({@required int page}) async {
-    final String url = '$kBaseUrl/api/mobile/user/translation/history?page=$page';
+    final String url =
+        '$kBaseUrl/api/mobile/user/translation/history?page=$page';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final response = await http.get(
-      url,
+      Uri.parse(url),
       headers: kAuthRequestHeaders(rawToken: prefs.getString('token')),
     );
 

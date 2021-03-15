@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../config/responsive.dart';
+import '../../configs/responsive.dart';
 
 class FormError extends StatelessWidget {
   final List<String> errors;

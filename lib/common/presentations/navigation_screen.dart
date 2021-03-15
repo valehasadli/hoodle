@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../config/responsive.dart';
+import '../configs/responsive.dart';
 import '../../home/presentation/home_screen.dart';
 import '../../profile/presentation/profile_screen.dart';
-import '../../timeline/presentation/timeline_screen.dart';
 
 import 'connection_sensitive_screen.dart';
 import 'components/custom_tab_bar.dart';
@@ -19,13 +18,11 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   final List<Widget> _screens = [
     HomeScreen(),
-    TimelineScreen(),
     ProfileScreen(),
   ];
 
   final List<IconData> _icons = [
     Icons.home,
-    Icons.timeline,
     MdiIcons.account,
   ];
 

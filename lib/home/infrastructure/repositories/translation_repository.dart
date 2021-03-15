@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../common/errors/failures.dart';
 import '../../../common/errors/exceptions.dart';
-import '../../../common/platform/internet.dart';
+import '../../../common/platforms/internet.dart';
 import '../../domain/entities/translation_entity.dart';
 import '../../domain/interfaces/translation_interface.dart';
 import '../data_sources/translation_remote_data_provider.dart';

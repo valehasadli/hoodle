@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../config/responsive.dart';
+import '../../configs/responsive.dart';
 
 class SocialCard extends StatelessWidget {
   final String icon;

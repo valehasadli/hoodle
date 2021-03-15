@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../../../routes/router.gr.dart';
-import '../../../common/presentation/components/default_button.dart';
-import '../../../common/config/responsive.dart';
+import '../../../common/routes/router.gr.dart';
+import '../../../common/presentations/components/default_button.dart';
+import '../../../common/configs/responsive.dart';
 import '../../../common/utils/theme_constants.dart';
 import '../../../common/utils/animation_constants.dart';
 

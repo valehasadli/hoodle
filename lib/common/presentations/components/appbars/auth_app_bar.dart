@@ -3,11 +3,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../../../common/config/responsive.dart';
-import '../../../common/utils/theme_constants.dart';
-import '../../../injections.dart';
+import '../../../configs/responsive.dart';
+import '../../../utils/theme_constants.dart';
+import '../../../../injections.dart';
 import '../../../routes/router.gr.dart';
-import '../bloc/auth/auth_bloc.dart';
+import '../../blocs/auth/auth_bloc.dart';
 
 class AuthAppBar extends PreferredSize {
   @override
@@ -38,7 +38,7 @@ class AuthAppBar extends PreferredSize {
           BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state.status == AuthStatus.progress) {
-                Scaffold.of(context)
+                ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
                   ..showSnackBar(
                     const SnackBar(
@@ -52,7 +52,7 @@ class AuthAppBar extends PreferredSize {
                   );
                 });
               } else if (state.status == AuthStatus.failure) {
-                Scaffold.of(context)
+                ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
                   ..showSnackBar(
                     const SnackBar(

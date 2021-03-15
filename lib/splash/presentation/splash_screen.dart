@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../common/config/responsive.dart';
-import '../../common/presentation/connection_sensitive_screen.dart';
+import '../../common/configs/responsive.dart';
+import '../../common/presentations/connection_sensitive_screen.dart';
 import 'components/body.dart';
 
 class SplashScreen extends StatelessWidget {

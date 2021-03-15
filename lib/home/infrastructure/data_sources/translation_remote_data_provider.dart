@@ -17,7 +17,7 @@ class TranslationRemoteDataProvider {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final http.Response response = await http.post(
-      url,
+      Uri.parse(url),
       headers: kAuthRequestHeaders(rawToken: prefs.getString('token')),
       body: jsonEncode(<String, String>{
         'key': key,

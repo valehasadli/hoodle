@@ -1,18 +1,15 @@
 import 'package:auto_route/auto_route_annotations.dart';
 
-import '../common/presentation/navigation_screen.dart';
-
-import '../complete_profile/presentation/complete_profile_screen.dart';
-import '../forgot_password/presentation/forgot_password_screen.dart';
-import '../home/presentation/home_screen.dart';
-import '../registration/presentation/registration_screen.dart';
-import '../splash/presentation/splash_screen.dart';
-import '../login/presentation/login_screen.dart';
-import '../login_success/presentation/login_success_screen.dart';
-import '../profile/presentation/profile_screen.dart';
-import '../timeline/presentation/timeline_screen.dart';
-
-import '../common/utils/route_constants.dart';
+import '../presentations/navigation_screen.dart';
+import '../../complete_profile/presentation/complete_profile_screen.dart';
+import '../../forgot_password/presentation/forgot_password_screen.dart';
+import '../../home/presentation/home_screen.dart';
+import '../../registration/presentation/registration_screen.dart';
+import '../../splash/presentation/splash_screen.dart';
+import '../../login/presentation/login_screen.dart';
+import '../../login_success/presentation/login_success_screen.dart';
+import '../../profile/presentation/profile_screen.dart';
+import '../utils/route_constants.dart';
 
 import 'guards/auth_guard.dart';
 import 'guards/guest_guard.dart';
@@ -65,12 +62,6 @@ import 'guards/guest_guard.dart';
     ),
     CustomRoute<bool>(
       page: ProfileScreen,
-      transitionsBuilder: kRouteTransitionBuilder,
-      durationInMilliseconds: kRouteAnimationDuration,
-      guards: [AuthGuard],
-    ),
-    CustomRoute<bool>(
-      page: TimelineScreen,
       transitionsBuilder: kRouteTransitionBuilder,
       durationInMilliseconds: kRouteAnimationDuration,
       guards: [AuthGuard],

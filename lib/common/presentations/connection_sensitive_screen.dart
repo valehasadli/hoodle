@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../config/responsive.dart';
+import '../configs/responsive.dart';
 import 'components/connection_status_bar.dart';
 
 class ConnectionSensitiveScreen extends StatefulWidget {

@@ -5,7 +5,7 @@ import '../../../common/errors/failures.dart';
 import '../../../common/errors/exceptions.dart';
 
 import '../../domain/entities/registration_entity.dart';
-import '../../../common/platform/internet.dart';
+import '../../../common/platforms/internet.dart';
 import '../../domain/interfaces/registration_interface.dart';
 import '../data_sources/registration_local_data_provider.dart';
 import '../data_sources/registration_remote_data_provider.dart';

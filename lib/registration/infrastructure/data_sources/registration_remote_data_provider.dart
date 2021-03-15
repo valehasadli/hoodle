@@ -15,7 +15,7 @@ class RegistrationRemoteDataProvider {
     final String url = '$kBaseUrl/api/mobile/auth/registration';
 
     final http.Response response = await http.post(
-      url,
+      Uri.parse(url),
       headers: kGuestRequestHeaders(),
       body: jsonEncode(<String, String>{
         'name': name,

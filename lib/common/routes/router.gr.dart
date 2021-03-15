@@ -9,16 +9,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../common/presentation/navigation_screen.dart';
-import '../complete_profile/presentation/complete_profile_screen.dart';
-import '../forgot_password/presentation/forgot_password_screen.dart';
-import '../home/presentation/home_screen.dart';
-import '../login/presentation/login_screen.dart';
-import '../login_success/presentation/login_success_screen.dart';
-import '../profile/presentation/profile_screen.dart';
-import '../registration/presentation/registration_screen.dart';
-import '../splash/presentation/splash_screen.dart';
-import '../timeline/presentation/timeline_screen.dart';
+import '../../complete_profile/presentation/complete_profile_screen.dart';
+import '../../forgot_password/presentation/forgot_password_screen.dart';
+import '../../home/presentation/home_screen.dart';
+import '../../login/presentation/login_screen.dart';
+import '../../login_success/presentation/login_success_screen.dart';
+import '../../profile/presentation/profile_screen.dart';
+import '../../registration/presentation/registration_screen.dart';
+import '../../splash/presentation/splash_screen.dart';
+import '../presentations/navigation_screen.dart';
 import 'guards/auth_guard.dart';
 import 'guards/guest_guard.dart';
 
@@ -31,7 +30,6 @@ class Routes {
   static const String loginSuccessScreen = '/login-success-screen';
   static const String homeScreen = '/home-screen';
   static const String profileScreen = '/profile-screen';
-  static const String timelineScreen = '/timeline-screen';
   static const String navigationScreen = '/navigation-screen';
   static const all = <String>{
     splashScreen,
@@ -42,7 +40,6 @@ class Routes {
     loginSuccessScreen,
     homeScreen,
     profileScreen,
-    timelineScreen,
     navigationScreen,
   };
 }
@@ -63,7 +60,6 @@ class AppRouter extends RouterBase {
         page: LoginSuccessScreen, guards: [AuthGuard]),
     RouteDef(Routes.homeScreen, page: HomeScreen, guards: [AuthGuard]),
     RouteDef(Routes.profileScreen, page: ProfileScreen, guards: [AuthGuard]),
-    RouteDef(Routes.timelineScreen, page: TimelineScreen, guards: [AuthGuard]),
     RouteDef(Routes.navigationScreen,
         page: NavigationScreen, guards: [AuthGuard]),
   ];
@@ -139,15 +135,6 @@ class AppRouter extends RouterBase {
         transitionDuration: const Duration(milliseconds: 200),
       );
     },
-    TimelineScreen: (data) {
-      return PageRouteBuilder<bool>(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            TimelineScreen(),
-        settings: data,
-        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-        transitionDuration: const Duration(milliseconds: 200),
-      );
-    },
     NavigationScreen: (data) {
       return PageRouteBuilder<bool>(
         pageBuilder: (context, animation, secondaryAnimation) =>
@@ -184,8 +171,6 @@ extension AppRouterExtendedNavigatorStateX on ExtendedNavigatorState {
   Future<bool> pushHomeScreen() => push<bool>(Routes.homeScreen);
 
   Future<bool> pushProfileScreen() => push<bool>(Routes.profileScreen);
-
-  Future<bool> pushTimelineScreen() => push<bool>(Routes.timelineScreen);
 
   Future<bool> pushNavigationScreen() => push<bool>(Routes.navigationScreen);
 }

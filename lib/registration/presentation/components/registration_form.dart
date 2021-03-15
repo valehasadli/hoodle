@@ -4,14 +4,14 @@ import 'package:form_validator/form_validator.dart';
 import 'package:auto_route/auto_route.dart';
 
 import '../../../common/utils/error_constants.dart';
-import '../../../common/config/responsive.dart';
-import '../../../common/presentation/components/custom_suffix_icon.dart';
-import '../../../common/presentation/components/default_button.dart';
+import '../../../common/configs/responsive.dart';
+import '../../../common/presentations/components/custom_suffix_icon.dart';
+import '../../../common/presentations/components/default_button.dart';
 import '../../../common/helpers/password_validator.dart';
 import '../../../common/helpers/email_validator.dart';
 import '../../../common/helpers/confirm_password_validator.dart';
 
-import '../../../routes/router.gr.dart';
+import '../../../common/routes/router.gr.dart';
 import '../bloc/registration_bloc.dart';
 
 part 'form_components/email_field.dart';
@@ -39,7 +39,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
           );
         }
         if (state.status == RegistrationStatus.failure) {
-          Scaffold.of(context)
+          ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
               const SnackBar(

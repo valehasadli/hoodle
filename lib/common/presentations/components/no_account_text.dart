@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../../../routes/router.gr.dart';
+import '../../routes/router.gr.dart';
 import '../../utils/theme_constants.dart';
-import '../../config/responsive.dart';
+import '../../configs/responsive.dart';
 
 class NoAccountText extends StatelessWidget {
   const NoAccountText({

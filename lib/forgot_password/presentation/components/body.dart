@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/presentation/components/no_account_text.dart';
-import '../../../common/config/responsive.dart';
+import '../../../common/presentations/components/no_account_text.dart';
+import '../../../common/configs/responsive.dart';
 
 import 'forgot_password_form.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/presentation/components/auth_app_bar.dart';
+import '../../../common/presentations/components/appbars/auth_app_bar.dart';
 
 import 'translation_form/translation_form.dart';
 import 'translation_history/translation_history.dart';

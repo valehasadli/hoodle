@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import '../../../common/errors/failures.dart';
 import '../../../common/errors/exceptions.dart';
 import '../../domain/entities/history_entity.dart';
-import '../../../common/platform/internet.dart';
+import '../../../common/platforms/internet.dart';
 import '../../domain/interfaces/history_interface.dart';
 import '../data_sources/history_remote_data_provider.dart';
 import '../data_sources/history_local_data_provider.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../common/config/responsive.dart';
+import '../../../../common/configs/responsive.dart';
 import '../../../../common/utils/theme_constants.dart';
 import '../../../../injections.dart';
 import '../../../domain/entities/history_entity.dart';
@@ -36,15 +36,16 @@ class TranslationHistory extends StatelessWidget {
         child: BlocConsumer<HistoryBloc, HistoryState>(
           listener: (context, state) {
             if (state.status == HistoryStatus.scroll) {
-              Scaffold.of(context)
+              ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
                   const SnackBar(
                     content: const Text('History Loading'),
                   ),
                 );
-            } else if (state.status == HistoryStatus.success) {
-              Scaffold.of(context).hideCurrentSnackBar();
+            }
+            if (state.status == HistoryStatus.success) {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
             }
           },
           builder: (context, state) {

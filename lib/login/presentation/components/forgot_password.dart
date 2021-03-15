@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-import '../../../routes/router.gr.dart';
+import '../../../common/routes/router.gr.dart';
 
 class ForgotPassword extends StatelessWidget {
   @override

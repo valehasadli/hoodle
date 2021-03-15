@@ -16,7 +16,7 @@ class AuthRemoteDataProvider {
     final String url = '$kBaseUrl/api/mobile/auth/login';
 
     final http.Response response = await http.post(
-      url,
+      Uri.parse(url),
       headers: kGuestRequestHeaders(),
       body: jsonEncode(<String, String>{
         'email': email,
@@ -38,7 +38,7 @@ class AuthRemoteDataProvider {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final http.Response response = await http.post(
-      url,
+      Uri.parse(url),
       headers: kAuthRequestHeaders(rawToken: prefs.getString('token')),
     );
 
@@ -51,7 +51,7 @@ class AuthRemoteDataProvider {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final http.Response response = await http.post(
-      url,
+      Uri.parse(url),
       headers: kAuthRequestHeaders(rawToken: prefs.getString('token')),
     );
 

@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../injections.dart';
-import '../../../../common/config/responsive.dart';
+import '../../../../common/configs/responsive.dart';
 import '../../../../common/utils/theme_constants.dart';
 
 import '../../bloc/translation/translation_bloc.dart';

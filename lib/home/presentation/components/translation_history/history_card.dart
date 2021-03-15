@@ -121,7 +121,7 @@ class HistoryCard extends StatelessWidget {
       const snackBar = SnackBar(
         content: const Text('copied to clipboard'),
       );
-      Scaffold.of(context)
+      ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(snackBar);
     });

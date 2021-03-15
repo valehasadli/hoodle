@@ -1,8 +1,8 @@
 import 'package:get_it/get_it.dart';
 
 // common
-import './common/platform/internet.dart';
-import './common/presentation/bloc/auth/auth_bloc.dart';
+import './common/platforms/internet.dart';
+import './common/presentations/blocs/auth/auth_bloc.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 
 // login
@@ -35,7 +35,7 @@ import './home/presentation/bloc/translation/translation_bloc.dart';
 
 final GetIt serviceLocator = GetIt.instance;
 
-Future<void> init() async {
+Future<void> ensureInitialized() async {
   commonDependencies();
   loginDependencies();
   registrationDependencies();
