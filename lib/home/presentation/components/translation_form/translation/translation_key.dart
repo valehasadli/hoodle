@@ -10,13 +10,12 @@ class TranslationKey extends StatelessWidget {
       ),
       child: BlocBuilder<TranslationBloc, TranslationState>(
         builder: (context, state) {
-          print(state.status);
           return Stack(
             clipBehavior: Clip.none,
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  right: getProportionateScreenWidth(20),
+                  right: getProportionateScreenWidth(40),
                 ),
                 child: TextField(
                   style: kFormTextStyle,
@@ -58,7 +57,7 @@ class TranslationKey extends StatelessWidget {
                     ),
                   ),
                 ),
-              if (state.status == TranslationStatus.success)
+              if (state.status == TranslationStatus.success && !state.history)
                 Positioned(
                   top: -10,
                   right: 25,
