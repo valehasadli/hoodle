@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
           SizedBox(
             width: Responsive.screenWidth * 0.6,
             child: DefaultButton(
-              text: 'Back to Home',
+              text: 'Navigate to Home',
               press: () => ExtendedNavigator.of(context).replace(
                 Routes.navigationScreen,
               ),

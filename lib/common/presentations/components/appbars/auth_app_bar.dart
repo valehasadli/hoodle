@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../configs/responsive.dart';
 import '../../../utils/theme_constants.dart';
@@ -63,7 +62,7 @@ class AuthAppBar extends PreferredSize {
             },
             builder: (context, state) {
               return IconButton(
-                icon: Icon(MdiIcons.logout),
+                icon: Icon(Icons.logout),
                 onPressed: state.status == AuthStatus.pure
                     ? () => context.read<AuthBloc>().add(AuthLogout())
                     : null,

@@ -8,8 +8,6 @@ import 'common/routes/router.gr.dart';
 import 'common/routes/guards/auth_guard.dart';
 import 'common/routes/guards/guest_guard.dart';
 
-bool useFirebaseEmulator = false;
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await injections.ensureInitialized();

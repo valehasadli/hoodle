@@ -1,6 +1,6 @@
 part of 'translation_bloc.dart';
 
-abstract class TranslationEvent extends Equatable {
+class TranslationEvent extends Equatable {
   const TranslationEvent();
 
   @override
@@ -53,4 +53,8 @@ class TranslationResetted extends TranslationEvent {
 
 class TranslationSubmitted extends TranslationEvent {
   const TranslationSubmitted();
+}
+
+class TranslationAddHistory extends TranslationEvent {
+  const TranslationAddHistory();
 }

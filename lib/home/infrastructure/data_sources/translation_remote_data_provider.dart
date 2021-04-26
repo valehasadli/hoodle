@@ -32,4 +32,23 @@ class TranslationRemoteDataProvider {
       throw ServerException();
     }
   }
+
+  Future<TranslationModel> addHistory({@required int id}) async {
+    final String url = '$kBaseUrl/api/mobile/user/translation/history/$id';
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    final http.Response response = await http.put(
+      Uri.parse(url),
+      headers: kAuthRequestHeaders(rawToken: prefs.getString('token')),
+      body: jsonEncode(<String, int>{
+        'history': 1,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      return TranslationModel.fromJson(json.decode(response.body));
+    } else {
+      throw ServerException();
+    }
+  }
 }

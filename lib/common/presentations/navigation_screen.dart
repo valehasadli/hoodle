@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../configs/responsive.dart';
 import '../../home/presentation/home_screen.dart';
@@ -23,7 +22,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   final List<IconData> _icons = [
     Icons.home,
-    MdiIcons.account,
+    Icons.account_box,
   ];
 
   @override

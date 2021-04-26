@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hoodle/home/presentation/blocs/history/history_bloc.dart';
+import 'package:hoodle/home/presentation/blocs/translation/translation_bloc.dart';
+import 'package:hoodle/injections.dart';
 
 import '../../../common/presentations/components/appbars/auth_app_bar.dart';
 
@@ -10,17 +14,30 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     final TrackingScrollController _scroll = TrackingScrollController();
     return SafeArea(
-      child: CustomScrollView(
-        controller: _scroll,
-        slivers: [
-          AuthAppBar(),
-          SliverToBoxAdapter(
-            child: TranslationForm(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<TranslationBloc>(
+            create: (BuildContext context) => serviceLocator<TranslationBloc>(),
           ),
-          SliverToBoxAdapter(
-            child: TranslationHistory(),
+          BlocProvider<HistoryBloc>(
+            create: (BuildContext context) => serviceLocator<HistoryBloc>()
+              ..add(
+                const HistoryFetch(),
+              ),
           ),
         ],
+        child: CustomScrollView(
+          controller: _scroll,
+          slivers: [
+            AuthAppBar(),
+            SliverToBoxAdapter(
+              child: TranslationForm(),
+            ),
+            SliverToBoxAdapter(
+              child: TranslationHistory(),
+            ),
+          ],
+        ),
       ),
     );
   }
