@@ -11,6 +11,7 @@ class TranslationState extends Equatable {
   final bool favorite;
   final bool history;
   final TranslationStatus status;
+  final TranslationEvent event;
 
   const TranslationState({
     this.id = 0,
@@ -23,6 +24,7 @@ class TranslationState extends Equatable {
     this.favorite = false,
     this.history = false,
     this.status = TranslationStatus.pure,
+    this.event = const TranslationEvent(),
   });
 
   TranslationState copyWith({
@@ -36,6 +38,7 @@ class TranslationState extends Equatable {
     bool favorite,
     bool history,
     TranslationStatus status,
+    TranslationEvent event,
   }) {
     return TranslationState(
       id: id ?? this.id,
@@ -48,6 +51,7 @@ class TranslationState extends Equatable {
       favorite: favorite ?? this.favorite,
       history: history ?? this.history,
       status: status ?? this.status,
+      event: event ?? this.event,
     );
   }
 
@@ -63,5 +67,6 @@ class TranslationState extends Equatable {
         favorite,
         history,
         status,
+        event,
       ];
 }

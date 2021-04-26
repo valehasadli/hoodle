@@ -1,6 +1,6 @@
 part of 'translation_bloc.dart';
 
-abstract class TranslationEvent extends Equatable {
+class TranslationEvent extends Equatable {
   const TranslationEvent();
 
   @override
